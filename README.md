@@ -1,4 +1,4 @@
-Do you have skype account?
-If so, let me know your skype id.
-Plz write it into text file and send here.
+Do you have skype?
+If so, plz invite live:jndev_zch0218.
+I'm waiting for your invitation.
 Thanks.
