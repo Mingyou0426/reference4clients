@@ -1,0 +1,83 @@
+SELECT COUNT
+	( * ) nr 
+FROM
+	(
+	SELECT
+		x.*,
+		ROW_NUMBER () over (order by null) +1 AS ID 
+	FROM
+		(
+		SELECT
+			* 
+		FROM
+			(
+			SELECT
+				0 rowindex,
+				z.* 
+			FROM
+				(
+				SELECT
+					COD_PROIECT A10_COD_PROIECT,
+					COD A10_COD,
+					ISSUE A10_ISSUE,
+					ISSUE_ID A10_ISSUE_ID,
+					ESTIMATED A10_ESTIMATED,
+					TOTAL_REALIZAT A10_TOTAL_REALIZAT,
+					IMPACT A10_IMPACT,
+					USERNAME_RESPONSABIL A10_USERNAME_RESPONSABIL,
+					USERNAME_SOLICITANT A10_USERNAME_SOLICITANT,
+					CREAT_DE A00_CREAT_DE,
+					CREAT_LA A10_CREAT_LA,
+					TERT A10_TERT,
+					MOTIV_BLOCARE A10_MOTIV_BLOCARE,
+					REZOLVARE A10_REZOLVARE,
+					SOLUTIE A10_SOLUTIE,
+					WBS A10_WBS,
+					NR_ZILE A10_NR_ZILE,
+					STATUS A10_STATUS,
+					STR_FILES A10_STR_FILES,
+					DISCUTII A10_DISCUTII,
+					1 dummy 
+				FROM
+					(
+					SELECT T.nume tert,
+						v.cod_proiect,
+						v.cod,
+						v.impact,
+						v.issue,
+						v.ID issue_id,
+						v.status,
+						v.username_responsabil,
+						v.username_solicitant,
+						v.creat_de,
+						v.creat_la,
+						v.estimated,
+						v.motiv_blocare,
+						v.solutie,
+						v.rezolvare,
+						pr.denumire AS WBS,
+						v.total_realizat,
+						get_issue_files ( v.ID ) str_files,
+						get_issue_comments ( v.ID ) discutii,
+						date_trunc(
+							'day',
+						CURRENT_TIMESTAMP - to_date( v.creat_la :: TEXT, 'YYYY-MM-DD HH24:MI:SS' )) nr_zile 
+					FROM
+						v_issues v
+						LEFT JOIN tert T ON T.ID = v.id_tert
+						LEFT JOIN proiect_zona_lucru pr ON pr.ID = v.id_proiect_zona_lucru 
+					WHERE
+						1 = 1 
+						AND v.id_responsabil = 19351 
+						AND V.ISSUESTATUS IN ( 0, 1, 2, 5 ) 
+						AND TRIM (
+							UPPER ( v.issue )) LIKE TRIM (
+							UPPER (
+							concat ( '%', 'W04', '%' ))) 
+					AND v.creat_la > ( CURRENT_TIMESTAMP - INTERVAL '200 day' )) aax 
+				ORDER BY
+					IMPACT ASC 
+				) z 
+			) A 
+		) x 
+	) cnt
