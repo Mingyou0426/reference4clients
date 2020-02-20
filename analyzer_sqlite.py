@@ -10,7 +10,7 @@ except NameError:
 
 # BASE_DIR = os.path.dirname(os.path.abspath(''))
 # conn = sqlite3.connect('C:\\Users\\User\\Desktop\\wineanalyzer_src\\wine.db')
-# BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
+BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
 db_path = os.path.join(BASE_DIR, "wine.db")
 
 conn = sqlite3.connect(db_path)
