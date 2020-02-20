@@ -9,6 +9,8 @@ except NameError:
     BASE_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 # BASE_DIR = os.path.dirname(os.path.abspath(''))
+# conn = sqlite3.connect('C:\\Users\\User\\Desktop\\wineanalyzer_src\\wine.db')
+BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
 db_path = os.path.join(BASE_DIR, "wine.db")
 
 conn = sqlite3.connect(db_path)
@@ -16,7 +18,8 @@ cursor = conn.cursor()
 
 cursor.execute('select count(*) from winetable')
 result = cursor.fetchone()
-print('Total records: ', result[0])
+# print('Total records: ', result[0])
+print('--- Top 100 Wines ---')
 
 cursor.execute('select state, round(cast(avg(score) as numeric), 2) ascore from winetable group by state order by state')
 statescore = {}
@@ -24,14 +27,14 @@ for row in cursor:
     print(row[0], row[1])
     statescore[row[0]] = row[1]
 
-outfile = open(os.path.join(BASE_DIR, "statescore.csv"), "w", encoding="utf-8", newline='\n')
-csvout = csv.writer(outfile)
-csvout.writerow(['state','score'])
-for k in statescore.keys():
-    newrow = [k, statescore[k]]
-    csvout.writerow(newrow)
+# outfile = open(os.path.join(BASE_DIR, "statescore.csv"), "w", encoding="utf-8", newline='\n')
+# csvout = csv.writer(outfile)
+# csvout.writerow(['state','score'])
+# for k in statescore.keys():
+#     newrow = [k, statescore[k]]
+#     csvout.writerow(newrow)
 
-outfile.close()
+# outfile.close()
 
 cursor.execute('select variety, round(cast(avg(score) as numeric), 2) ascore from winetable group by variety order by variety')
 varietyscore = {}
@@ -39,20 +42,21 @@ for row in cursor:
     print(row[0], row[1])
     varietyscore[row[0]] = row[1]
 
-outfile = open(os.path.join(BASE_DIR, "varietyscore.csv"), "w", encoding="utf-8", newline='\n')
-csvout = csv.writer(outfile)
-csvout.writerow(['variety','score'])
-for k in varietyscore.keys():
-    newrow = [k, varietyscore[k]]
-    csvout.writerow(newrow)
-
-outfile.close()
+# outfile = open(os.path.join(BASE_DIR, "varietyscore.csv"), "w", encoding="utf-8", newline='\n')
+# csvout = csv.writer(outfile)
+# csvout.writerow(['variety','score'])
+# for k in varietyscore.keys():
+#     newrow = [k, varietyscore[k]]
+#     csvout.writerow(newrow)
+#
+# outfile.close()
 
 cursor.execute('select id, title, score, price, state, variety from winetable')
 
 ucursor = conn.cursor()
 
 totscore = 0.0
+count = 0
 for row in cursor:
     totscore = row[2]*4
     if row[3] is not None:
@@ -76,7 +80,10 @@ for row in cursor:
             break
     ucursor.execute('update winetable set totalscore=? where id=?',(round(totscore/10,2), row[0]))
     conn.commit()
-    print(row[1], (round(totscore/10,2)))
+    count = count+1
+    if count<100:
+        print(row[1], (round(totscore/10,2)))
+        break
 
 # csvout = open(os.path.join(BASE_DIR, "wineout.csv"), "w", encoding="utf-8")
 outfile = open(os.path.join(BASE_DIR, "wineout.csv"), "w", encoding="utf-8", newline='\n')
