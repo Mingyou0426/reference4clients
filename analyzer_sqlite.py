@@ -10,7 +10,7 @@ except NameError:
 
 # BASE_DIR = os.path.dirname(os.path.abspath(''))
 # conn = sqlite3.connect('C:\\Users\\User\\Desktop\\wineanalyzer_src\\wine.db')
-BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
+# BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
 db_path = os.path.join(BASE_DIR, "wine.db")
 
 conn = sqlite3.connect(db_path)
@@ -24,7 +24,7 @@ print('--- Top 100 Wines ---')
 cursor.execute('select state, round(cast(avg(score) as numeric), 2) ascore from winetable group by state order by state')
 statescore = {}
 for row in cursor:
-    print(row[0], row[1])
+    # print(row[0], row[1])
     statescore[row[0]] = row[1]
 
 # outfile = open(os.path.join(BASE_DIR, "statescore.csv"), "w", encoding="utf-8", newline='\n')
@@ -39,7 +39,7 @@ for row in cursor:
 cursor.execute('select variety, round(cast(avg(score) as numeric), 2) ascore from winetable group by variety order by variety')
 varietyscore = {}
 for row in cursor:
-    print(row[0], row[1])
+    # print(row[0], row[1])
     varietyscore[row[0]] = row[1]
 
 # outfile = open(os.path.join(BASE_DIR, "varietyscore.csv"), "w", encoding="utf-8", newline='\n')
@@ -80,9 +80,9 @@ for row in cursor:
             break
     ucursor.execute('update winetable set totalscore=? where id=?',(round(totscore/10,2), row[0]))
     conn.commit()
+    print(row[1], (round(totscore/10,2)))
     count = count+1
-    if count<100:
-        print(row[1], (round(totscore/10,2)))
+    if count==100:
         break
 
 # csvout = open(os.path.join(BASE_DIR, "wineout.csv"), "w", encoding="utf-8")
