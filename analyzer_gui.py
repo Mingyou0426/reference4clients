@@ -18,10 +18,10 @@ except NameError:
     BASE_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 # BASE_DIR = os.path.dirname(os.path.abspath(''))
-BASE_DIR = 'C:\\Users\\User\\Desktop\\wineanalyzer_src\\';
+BASE_DIR = 'C:\\Users\\User\\Desktop\\wine_project\\';
 # BASE_DIR = 'E:\\ming\\seongsikj\\wineanalyzer'
 
-wine_csv = pd.read_csv(os.path.join(BASE_DIR, "wine.csv"), encoding = "latin")
+wine_csv = pd.read_csv(os.path.join(BASE_DIR, "wine_project.csv"), encoding = "latin")
 # print(wine_csv.head(wine_csv.shape[0]+1))
 # # print('\n')
 # wine_csv.hist(bins=10, figsize=(20,20))
