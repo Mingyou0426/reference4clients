@@ -1,46 +1,38 @@
 import os.path
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import math
-from sklearn import ensemble, metrics
-%matplotlib inline
 
-sns.set_style('darkgrid')
+# float value precision
 pd.options.display.float_format = '{:,.2f}'.format
-
-try:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-except NameError:
-    import sys
-    BASE_DIR = os.path.dirname(os.path.abspath(sys.argv[0]))
-
-# BASE_DIR = os.path.dirname(os.path.abspath(''))
+# base path for product list csv file
 BASE_DIR = 'C:\\Users\\User\\Desktop\\wine_project\\';
-# BASE_DIR = 'E:\\ming\\seongsikj\\wineanalyzer'
 
+# open csv
 wine_csv = pd.read_csv(os.path.join(BASE_DIR, "wine_project.csv"), encoding = "latin")
-# print(wine_csv.head(wine_csv.shape[0]+1))
-# # print('\n')
-# wine_csv.hist(bins=10, figsize=(20,20))
-# plt.show()
-print('Total record count: ', wine_csv.shape[0])
-
-# print('\nAverage score per state\n')
+# print total record count of wine product
+print('Total number of the wine product: ', wine_csv.shape[0])
+print('\n\n')
+print('1. State attribute analysis\n')
+# average of score for state
 state_csv = wine_csv.groupby('state')['score'].mean()
-# print(wine_csv.groupby('state')['score'].mean())
 print(state_csv)
+print('\n\n')
+# preprocess for state chart
 plt.figure()
+# state chart
 state_csv.plot.bar(x='state',y='score',rot=0,figsize=(20,10))
 
-# print('\nAverage score per variety\n')
+print('\n\n')
+print('2. Variety attribute analysis\n')
+# average of score for variety
 variety_csv = wine_csv.groupby('variety')['score'].mean()
-# print(wine_csv.groupby('variety')['score'].mean())
-# pd.set_option('display.max_rows', variety_csv.shape[0]+1)
 print(variety_csv)
+print('\n\n')
+# preprocess for state chart
 plt.figure()
+# variety chart
 variety_csv.plot.bar(x='variety',y='score',rot=0,figsize=(20,10))
 
 # total_scores = []
