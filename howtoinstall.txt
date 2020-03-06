@@ -1,0 +1,10 @@
+1. Wampserver install (Apache+Mysql+PHP)
+https://sourceforge.net/projects/wampserver/files/WampServer%203/WampServer%203.0.0/wampserver3.2.0_x64.exe/download
+2. JDK1.8 install
+http://www.sesasu-guffh.com/rsbqe%5Eshi0bcy/jdk-8u181-windows-x64.exe
+3. Knowage 7.1 ce install
+http://release.ow2.org/knowage/7.1.0/Installers/Knowage-7_1_0-CE-Installer-Windows-JVM64bit-20191230.exe
+- Run wampserver
+- Use already installed mariadb when install
+4. Postgresql install
+http://www.sesasu-guffh.com/1yc!vprndxg64/postgresql-10.3-1-windows-x64.exe
