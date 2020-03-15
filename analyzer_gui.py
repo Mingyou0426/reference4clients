@@ -9,9 +9,11 @@ import math
 # float value precision
 pd.options.display.float_format = '{:,.2f}'.format
 # base path for product list csv file
-BASE_DIR = 'E:\\ming\\seongsikj\\wineanalyzer'
+# BASE_DIR = 'C:\\Users\\User\\Desktop\\wine_project\\';
+BASE_DIR = 'E:\\ming\\seongsikj\\wineanalyzer';
 
 # open csv
+print('List of wine products')
 wine_csv = pd.read_csv(os.path.join(BASE_DIR, "wine.csv"), encoding = "latin")
 fig = go.Figure(data=[go.Table(
     header=dict(values=list(wine_csv.columns),
@@ -26,10 +28,10 @@ fig.show()
 print('Total number of the wine product: ', wine_csv.shape[0])
 print('\n')
 print('1. State attribute analysis')
+print('The score of the state which is calculated all of the sum of each states score and then divided by the number of the states products')
 # average of score for state
 state_csv = wine_csv.groupby('state')['score'].mean()
-state_csv4view = state_csv.sort_values(ascending=False).head(10)
-dic = state_csv4view.to_dict()
+dic = state_csv.to_dict()
 state = list(dic.keys())
 score = list(dic.values())
 
@@ -50,11 +52,49 @@ fig = go.Figure(data=[go.Table(
 ])
 fig.show()
 
+# print('Top 10 of the states')
+layout = go.Layout(
+    title=go.layout.Title(
+        text='Top 10 of the states'
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='States',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Score',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+state_csv4view = state_csv.sort_values(ascending=False).head(10)
+dic = state_csv4view.to_dict()
+state = list(dic.keys())
+score = list(dic.values())
+
+for i in range(len(score)):
+    val = round(score[i],2)
+    score[i] = val    
+
+state1 = {'state': state, 'score': score}
+df = pd.DataFrame(state1)
+
 fig1 = go.Figure(data=[go.Bar(
             x=state, y=score,
             text=score,
             textposition='auto',
-        )])
+        )], layout=layout)
 fig1.show()
 
 # print(state_csv4view)
