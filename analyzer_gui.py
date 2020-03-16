@@ -28,6 +28,7 @@ fig.show()
 print('Total number of the wine product: ', wine_csv.shape[0])
 print('\n')
 print('1. State attribute analysis')
+print('\n')
 print('The score of the state which is calculated all of the sum of each states score and then divided by the number of the states products')
 # average of score for state
 state_csv = wine_csv.groupby('state')['score'].mean()
@@ -97,18 +98,69 @@ fig1 = go.Figure(data=[go.Bar(
         )], layout=layout)
 fig1.show()
 
-# print(state_csv4view)
-# print('\n\n')
-# preprocess for state chart
-# plt.figure()
-# # state chart
-# ax = state_csv4view.plot.bar(x='state',y='score',rot=0,figsize=(20,10))
-# for p in ax.patches:
-#     ax.annotate(str('%.2f'%(p.get_height())), (p.get_x() * 1.005, p.get_height() * 1.005))
+print('\n\n')
+print('2. Price attribute analysis\n')
+titlelist = []
+pricelist = []
+pricescore = [0, 0, 0, 0, 0]
+indexlist = []
+newind = 0
+for ind in range(0, wine_csv.shape[0]):
+    if wine_csv.loc[ind]['price'] is not None:
+        newind = newind+1
+        indexlist.append(newind)
+        titlelist.append(wine_csv.loc[ind]['title'])
+        pricelist.append(wine_csv.loc[ind]['price'])
+        if wine_csv.loc[ind]['price'] > 300:
+            pricescore[4] = pricescore[4]+1
+        elif wine_csv.loc[ind]['price'] > 230:
+            pricescore[3] = pricescore[3]+1
+        elif wine_csv.loc[ind]['price'] > 100:
+            pricescore[2] = pricescore[2]+1
+        elif wine_csv.loc[ind]['price'] > 50:
+            pricescore[1] = pricescore[1]+1
+        else:
+            pricescore[0] = pricescore[0]+1
 
-# print('\n\n')
-# print('2. Variety attribute analysis\n')
-# # average of score for variety
+fig = go.Figure(data=go.Scatter(x=indexlist, y=pricelist, mode='markers'))
+fig.show()
+
+xvalue = [1, 2, 3, 4, 5]
+layout = go.Layout(
+    title=go.layout.Title(
+        text='Count per points'
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Point',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Count',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+
+fig1 = go.Figure(data=[go.Bar(
+            x=xvalue, y=pricescore,
+            text=pricescore,
+            textposition='auto',
+        )], layout=layout)
+fig1.show()
+
+# fig.show()
+# average of score for variety
 # variety_csv = wine_csv.groupby('variety')['score'].mean()
 # pd.set_option('display.max_rows', variety_csv.shape[0]+1)
 # print(variety_csv)
