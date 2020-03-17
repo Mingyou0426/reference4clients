@@ -100,9 +100,20 @@ fig1.show()
 
 print('\n\n')
 print('2. Price attribute analysis\n')
+print('Price_score is defined based on the price and "Null" is elminated')
+
+fig = go.Figure(data=[go.Table(header=dict(values=['The range of Price', 'Point'],
+                fill_color='paleturquoise',
+                align='left'),
+                cells=dict(values=[['0-20', '21-40', '41-60', '61-80', '81-100', '101-120', '121-140', '141-180', '181-250', '251~']
+                                    , [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]],
+                fill_color='lavender',
+                align='left'))])
+fig.show()
+
 titlelist = []
 pricelist = []
-pricescore = [0, 0, 0, 0, 0]
+pricescore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 indexlist = []
 newind = 0
 for ind in range(0, wine_csv.shape[0]):
@@ -111,24 +122,60 @@ for ind in range(0, wine_csv.shape[0]):
         indexlist.append(newind)
         titlelist.append(wine_csv.loc[ind]['title'])
         pricelist.append(wine_csv.loc[ind]['price'])
-        if wine_csv.loc[ind]['price'] > 300:
-            pricescore[4] = pricescore[4]+1
-        elif wine_csv.loc[ind]['price'] > 230:
-            pricescore[3] = pricescore[3]+1
+        if wine_csv.loc[ind]['price'] > 250:
+            pricescore[9] = pricescore[9]+1
+        elif wine_csv.loc[ind]['price'] > 180:
+            pricescore[8] = pricescore[8]+1
+        elif wine_csv.loc[ind]['price'] > 140:
+            pricescore[7] = pricescore[7]+1
+        elif wine_csv.loc[ind]['price'] > 120:
+            pricescore[6] = pricescore[6]+1
         elif wine_csv.loc[ind]['price'] > 100:
+            pricescore[5] = pricescore[5]+1
+        elif wine_csv.loc[ind]['price'] > 80:
+            pricescore[4] = pricescore[4]+1
+        elif wine_csv.loc[ind]['price'] > 60:
+            pricescore[3] = pricescore[3]+1
+        elif wine_csv.loc[ind]['price'] > 40:
             pricescore[2] = pricescore[2]+1
-        elif wine_csv.loc[ind]['price'] > 50:
+        elif wine_csv.loc[ind]['price'] > 20:
             pricescore[1] = pricescore[1]+1
         else:
             pricescore[0] = pricescore[0]+1
 
-fig = go.Figure(data=go.Scatter(x=indexlist, y=pricelist, mode='markers'))
-fig.show()
-
-xvalue = [1, 2, 3, 4, 5]
 layout = go.Layout(
     title=go.layout.Title(
-        text='Count per points'
+        text='Point distribution'
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Wine ID',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Wine price',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+
+fig = go.Figure(data=go.Scatter(x=indexlist, y=pricelist, mode='markers'), layout=layout)
+fig.show()
+
+xvalue = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+layout = go.Layout(
+    title=go.layout.Title(
+        text='Point distribution'
     ),
     xaxis=go.layout.XAxis(
         title=go.layout.xaxis.Title(
@@ -142,7 +189,7 @@ layout = go.Layout(
     ),
     yaxis=go.layout.YAxis(
         title=go.layout.yaxis.Title(
-            text='Count',
+            text='Number of wine',
             font=dict(
                 family='Courier New, monospace',
                 size=18,
