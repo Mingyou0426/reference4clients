@@ -140,7 +140,7 @@ for ind in range(0, wine_csv.shape[0]):
             pricescore[2] = pricescore[2]+1
         elif wine_csv.loc[ind]['price'] > 20:
             pricescore[1] = pricescore[1]+1
-        else:
+        elif wine_csv.loc[ind]['price'] > 0:
             pricescore[0] = pricescore[0]+1
 
 layout = go.Layout(
