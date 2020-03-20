@@ -30,6 +30,7 @@ print('\n')
 print('1. State attribute analysis')
 print('\n')
 print('The score of the state which is calculated all of the sum of each states score and then divided by the number of the states products')
+print('\nScore of states')
 # average of score for state
 state_csv = wine_csv.groupby('state')['score'].mean()
 dic = state_csv.to_dict()
@@ -100,9 +101,10 @@ fig1.show()
 
 print('\n\n')
 print('2. Price attribute analysis\n')
-print('Price_score is defined based on the price and "Null" is elminated')
+print('Price_score is defined based on the price and "Null" is elminated\n')
+print('Price_score criteria')
 
-fig = go.Figure(data=[go.Table(header=dict(values=['The range of Price', 'Point'],
+fig = go.Figure(data=[go.Table(header=dict(values=['The range of Price($)', 'Point'],
                 fill_color='paleturquoise',
                 align='left'),
                 cells=dict(values=[['0-20', '21-40', '41-60', '61-80', '81-100', '101-120', '121-140', '141-180', '181-250', '251~']
@@ -162,7 +164,7 @@ layout = go.Layout(
     ),
     yaxis=go.layout.YAxis(
         title=go.layout.yaxis.Title(
-            text='Wine price',
+            text='Wine price($)',
             font=dict(
                 family='Courier New, monospace',
                 size=18,
@@ -209,13 +211,15 @@ fig1 = go.Figure(data=[go.Bar(
         )], layout=layout)
 fig1.show()
 
-print('Kind of total counts of price ', wine_csv.shape[0])
-print('\n Null ', nullcnt)
+print('Kind of total counts of price: ', wine_csv.shape[0])
+print('\n Null: ', nullcnt)
 
 print('\n')
 print('3. Variety attribute analysis')
 print('\n')
 print('The score of the variety which is calculated all of the sum of each varieties score and then divided by the number of the varieties products')
+print('\nIf data is Null it is given average score')
+print('\nScore of variety')
 # average of score for variety
 wine_csv["variety"].fillna("Zz No Variety", inplace = True) 
 variety_csv = wine_csv.groupby('variety')['score'].mean()
