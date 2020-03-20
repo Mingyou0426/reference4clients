@@ -406,7 +406,18 @@ fig = go.Figure(data=[go.Table(
 ])
 fig.show()
 
+print('\nTable of top 10 wines of the total score')
 wine_csv4view = wine_csv.sort_values(by='totalscore', ascending=False).head(10)
+fig = go.Figure(data=[go.Table(
+    header=dict(values=list(wine_csv4view.columns),
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[wine_csv4view.id, wine_csv4view.country, wine_csv4view.title, wine_csv4view.score, wine_csv4view.price, wine_csv4view.state, wine_csv4view.region_1, wine_csv4view.region_2, wine_csv4view.variety, wine_csv4view.winery, wine_csv4view.totalscore],
+               fill_color='lavender',
+               align='left'))
+])
+fig.show()
+
 layout = go.Layout(
     title=go.layout.Title(
         text='Top 10 of the total score'
