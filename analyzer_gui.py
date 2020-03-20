@@ -98,9 +98,82 @@ fig1 = go.Figure(data=[go.Bar(
             textposition='auto',
         )], layout=layout)
 fig1.show()
+print('\n')
+print('2. Price attribute analysis(Added)')
+print('\n')
+print('The score of the price which is calculated all of the sum of each price score and then divided by the number of the price products')
+print('\nScore of prices')
+# average of score for price
+# wine_csv["price"].fillna(0, inplace = True) 
+price_csv = wine_csv.groupby('price')['score'].mean()
+dic = price_csv.to_dict()
+price = list(dic.keys())
+score = list(dic.values())
+
+for i in range(len(score)):
+    val = round(score[i],2)
+    score[i] = val    
+
+price1 = {'price': price, 'score': score}
+df = pd.DataFrame(price1)
+# print(df)
+fig = go.Figure(data=[go.Table(
+    header=dict(values=df.columns,
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df.price, df.score],
+               fill_color='lavender',
+               align='left'))
+])
+fig.show()
+
+# print('Top 10 of the prices')
+layout = go.Layout(
+    title=go.layout.Title(
+        text='Top 10 of the prices'
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Prices',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Score',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+price_csv4view = price_csv.sort_values(ascending=False).head(10)
+dic = price_csv4view.to_dict()
+price = list(dic.keys())
+score = list(dic.values())
+
+for i in range(len(score)):
+    val = round(score[i],2)
+    score[i] = val    
+
+price1 = {'price': price, 'score': score}
+df = pd.DataFrame(price1)
+
+fig1 = go.Figure(data=[go.Bar(
+            x=price, y=score,
+            text=score,
+            textposition='auto',
+        )], layout=layout)
+fig1.show()
 
 print('\n\n')
-print('2. Price attribute analysis\n')
+print('3. Price attribute analysis\n')
 print('Price_score is defined based on the price and "Null" is elminated\n')
 print('Price_score criteria')
 
@@ -215,7 +288,7 @@ print('Kind of total counts of price: ', wine_csv.shape[0])
 print('\n Null: ', nullcnt)
 
 print('\n')
-print('3. Variety attribute analysis')
+print('4. Variety attribute analysis')
 print('\n')
 print('The score of the variety which is calculated all of the sum of each varieties score and then divided by the number of the varieties products')
 print('\nIf data is Null it is given average score')
