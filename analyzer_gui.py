@@ -116,6 +116,7 @@ pricelist = []
 pricescore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 indexlist = []
 newind = 0
+nullcnt = 0
 for ind in range(0, wine_csv.shape[0]):
     if wine_csv.loc[ind]['price'] is not None:
         newind = newind+1
@@ -142,6 +143,8 @@ for ind in range(0, wine_csv.shape[0]):
             pricescore[1] = pricescore[1]+1
         elif wine_csv.loc[ind]['price'] > 0:
             pricescore[0] = pricescore[0]+1
+        else:
+            nullcnt = nullcnt+1
 
 layout = go.Layout(
     title=go.layout.Title(
@@ -202,6 +205,82 @@ layout = go.Layout(
 fig1 = go.Figure(data=[go.Bar(
             x=xvalue, y=pricescore,
             text=pricescore,
+            textposition='auto',
+        )], layout=layout)
+fig1.show()
+
+print('Kind of total counts of price ', wine_csv.shape[0])
+print('\n Null ', nullcnt)
+
+print('\n')
+print('3. Variety attribute analysis')
+print('\n')
+print('The score of the variety which is calculated all of the sum of each varieties score and then divided by the number of the varieties products')
+# average of score for variety
+wine_csv["variety"].fillna("Zz No Variety", inplace = True) 
+variety_csv = wine_csv.groupby('variety')['score'].mean()
+dic = variety_csv.to_dict()
+variety = list(dic.keys())
+score = list(dic.values())
+
+for i in range(len(score)):
+    val = round(score[i],2)
+    score[i] = val    
+
+variety1 = {'variety': variety, 'score': score}
+df = pd.DataFrame(variety1)
+# print(df)
+fig = go.Figure(data=[go.Table(
+    header=dict(values=df.columns,
+                fill_color='paleturquoise',
+                align='left'),
+    cells=dict(values=[df.variety, df.score],
+               fill_color='lavender',
+               align='left'))
+])
+fig.show()
+
+# print('Top 10 of the varieties')
+layout = go.Layout(
+    title=go.layout.Title(
+        text='Top 10 of the varieties'
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Varieties',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Score',
+            font=dict(
+                family='Courier New, monospace',
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+variety_csv4view = variety_csv.sort_values(ascending=False).head(10)
+dic = variety_csv4view.to_dict()
+variety = list(dic.keys())
+score = list(dic.values())
+
+for i in range(len(score)):
+    val = round(score[i],2)
+    score[i] = val    
+
+variety1 = {'variety': variety, 'score': score}
+df = pd.DataFrame(variety1)
+
+fig1 = go.Figure(data=[go.Bar(
+            x=variety, y=score,
+            text=score,
             textposition='auto',
         )], layout=layout)
 fig1.show()
