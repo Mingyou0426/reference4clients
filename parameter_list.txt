@@ -1,0 +1,13 @@
+DRGSPATIENT_FACT_25
+	Data Month: 2020_03
+	Diag_Icd10: 呼吸衰竭
+	Op_Icd9: 胃切除术
+	Dischg_Dept: 心内科
+	DRG: 麝香
+
+Opers_DeptKpi_FACT_9
+	From_Month: 2017_03
+	To_Month: 2020_03
+	Analysis_Object: 院/科/医师 (All are possible)
+
+DRGsDepts_FACT_22, Opers_DKpiBen_FACT_9 also have input parameters, but they are used by other documents(DRGsDepts_FACT_21, Opers_DeptKpi_FACT_9) using cross navigation
