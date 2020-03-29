@@ -251,6 +251,28 @@
         .fc-dayGrid-view .fc-body .fc-row {
             min-height: 0px;
         }
+
+        /* Year, Month picker */
+        .mb-3, .my-3 {
+            margin-bottom: 3px !important;
+        }
+        /* Year, Month picker */
+
+        .highcharts-credits {
+            display: none;
+        }
+
+        .card-header {
+            padding: 0 0 0 0;
+        }
+
+        [data-toggle="collapse"] .fa:before {
+            content: "\f139";
+        }
+
+        [data-toggle="collapse"].collapsed .fa:before {
+            content: "\f13a";
+        }
     </style>
     <script>
         $(function(){
@@ -296,7 +318,7 @@
             $('#end-date-picker').datepicker();
 
             $('#doelist').DataTable({
-                lengthMenu: [5, 10, 20, 50]
+                lengthMenu: [8, 15, 30, 50]
             });
 
             $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
@@ -345,6 +367,12 @@
                         title: 'Event 1',
                         start: '2020-03-05',
                         color: '#eab34a',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Event 2',
+                        start: '2020-03-05',
+                        color: '#60b6a1',
                         textColor: '#ffffff'
                     },
                     {
@@ -418,6 +446,7 @@
                 chart: {
                     type: 'line'
                 },
+                legend: false,
                 title: {
                     text: 'Appeals Over the last Year',
                     style: {
@@ -445,6 +474,7 @@
                 chart: {
                     type: 'line'
                 },
+                legend: false,
                 title: {
                     text: 'Appeals by Year',
                     style: {
@@ -472,7 +502,7 @@
     <title>Data Portal Home</title>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row" style="height: 20px;">
 
     </div>
@@ -501,28 +531,28 @@
                 <div class="col-md-10 text-left">
                     <div class="row">
                         <div style="width: 13%; min-width: 100px;">
-                            <button class="btn" style="color: #ffffff; background-color: #47c4ca; width: 100%; font-size: 12px;">Framework</button>
+                            <a href='pages/Framework.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #47c4ca; width: 100%; font-size: 12px;">Framework</button></a>
                         </div>
                         <div class="topheaderlink1">
-                            <button class="btn" style="color: #ffffff; background-color: #2980b9; width: 100%; font-size: 12px;">Action</button>
+                            <a href='pages/Action.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #2980b9; width: 100%; font-size: 12px;">Action</button></a>
                         </div>
                         <div class="topheaderlink1">
-                            <button class="btn" style="color: #ffffff; background-color: #16a085; width: 100%; font-size: 12px;">Compendium</button>
+                            <a href='pages/Compendium.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #16a085; width: 100%; font-size: 12px;">Compendium</button></a>
                         </div>
                         <div class="topheaderlink1">
-                            <button class="btn" style="color: #ffffff; background-color: #9bbb59; width: 100%; font-size: 12px;">Manual</button>
+                            <a href='pages/Manual.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #9bbb59; width: 100%; font-size: 12px;">Manual</button></a>
                         </div>
                         <div class="topheaderlink1">
-                            <button class="btn" style="color: #ffffff; background-color: #f39c12; width: 100%; font-size: 12px;">Missions</button>
+                            <a href='pages/Missions.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #f39c12; width: 100%; font-size: 12px;">Missions</button></a>
                         </div>
                         <div class="topheaderlink1">
-                            <button class="btn" style="color: #ffffff; background-color: #95a5a6; width: 100%; font-size: 12px;">Deployments</button>
+                            <a href='pages/Deployments.html' target="_blank"><button class="btn" style="color: #ffffff; background-color: #95a5a6; width: 100%; font-size: 12px;">Deployments</button></a>
                         </div>
                         <div class="topheaderlink2">
-                            <img src="images/faq.png" style="width: 100%;"/>
+                            <a href='pages/Faq.html' target="_blank"><img src="images/faq.png" style="width: 100%;"/></a>
                         </div>
                         <div class="topheaderlink2">
-                            <img src="images/feedback.png" style="width: 100%;"/>
+                            <a href='pages/Feedback.html' target="_blank"><img src="images/feedback.png" style="width: 100%;"/></a>
                         </div>
                         <div style="width: 2%;">
                         </div>
@@ -545,7 +575,7 @@
                 <li class="dropdown">
                     <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Rabaul Volcanological Observatory on Framework
+                        Response
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                         <li><a class="dropdown-item" href="#">Response 1</a></li>
@@ -587,13 +617,33 @@
                 <li class="dropdown">
                     <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Response
+                        Accessories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
                         <li><a class="dropdown-item" href="#">Accessories 1</a></li>
                         <li><a class="dropdown-item" href="#">Accessories 2</a></li>
                         <li><a class="dropdown-item" href="#">Accessories 3</a></li>
                         <li><a class="dropdown-item" href="#">Accessories 4</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Tops
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                        <li><a class="dropdown-item" href="#">Tops 1</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Pants
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                        <li><a class="dropdown-item" href="#">Colored</a></li>
+                        <li><a class="dropdown-item" href="#">Primary</a></li>
+                        <li><a class="dropdown-item" href="#">action</a></li>
                     </ul>
                 </li>
             </ul>
@@ -603,22 +653,22 @@
                 <div class="col-md-8 text-left">
                     <div class="row">
                         <div style='width: 10%; text-align: center; min-width: 110px;'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #47c4ca;"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</button></a>
+                            <a href='#' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #47c4ca;"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</button></a>
                         </div>
                         <div class='topheaderlink3'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #2980b9;"><i class="fas fa-compact-disc"></i>&nbsp;&nbsp;Projects</button></a>
+                            <a href='pages/Projects.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #2980b9;"><i class="fas fa-compact-disc"></i>&nbsp;&nbsp;Projects</button></a>
                         </div>
                         <div class='topheaderlink3'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #16a085;"><i class="fas fa-rocket"></i>&nbsp;&nbsp;Documents</button></a>
+                            <a href='pages/Documents.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #16a085;"><i class="fas fa-rocket"></i>&nbsp;&nbsp;Documents</button></a>
                         </div>
                         <div class='topheaderlink3'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #9bbb59;"><i class="fas fa-asterisk"></i>&nbsp;&nbsp;Intranet</button></a>
+                            <a href='#' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #9bbb59;"><i class="fas fa-asterisk"></i>&nbsp;&nbsp;Intranet</button></a>
                         </div>
                         <div class='topheaderlink3'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #f39c12;"><i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Roster</button></a>
+                            <a href='#' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #f39c12;"><i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Roster</button></a>
                         </div>
                         <div class='topheaderlink3'>
-                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #95a5a6;"><i class="fas fa-lightbulb"></i>&nbsp;&nbsp;About</button></a>
+                            <a href='pages/About.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #95a5a6;"><i class="fas fa-lightbulb"></i>&nbsp;&nbsp;About</button></a>
                         </div>
                         <div style="width: 40%;">
                         </div>
@@ -644,31 +694,35 @@
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-8" style="background-color: #fcd039; font-size: 11px;">
-                    <span><br>Who we are?</span>
-                    <span style="color: #ffffff; font-weight: bold;"><br>DO</span>
-                    <span style="font-weight: bold;"><br>Department of Onions</span>
-                    <span>
-                        <br>Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
-                        To use Font Awesome icons, add the following to your HTML page (No downloading or installation is required):
-                    </span>
-                    <span style="display:block; text-align: right;">
-                        <br>
-                        <button class="btn" style="color: #ffffff; background-color: #f39c12;">Learn more <i class="fas fa-play"></i></button>
-                    </span>
+                <div class="col" style="background-color: #fcd039; font-size: 11px; padding-right: 0px;">
+                    <div style="padding-right: 5px;">
+                        <span><br>Who we are?</span>
+                        <span style="color: #ffffff; font-weight: bold;"><br>DO</span>
+                        <span style="font-weight: bold;"><br>Department of Onions</span>
+                        <span>
+                            <br>Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
+                            To use Font Awesome icons, add the following to your HTML page (No downloading or installation is required):
+                            Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
+                        </span>
+                        <span style="display:block; text-align: right;">
+                            <br>
+                            <button class="btn" style="color: #ffffff; background-color: #f39c12;">Learn more <i class="fas fa-play"></i></button>
+                        </span>
+                    </div>
                 </div>
-                <div class="col-md-4 p-0">
+                <div class="col" style="padding-left: 0px;">
                     <img src="images/back.png" class="img-responsive" style="width:100%; display: block;"/>
                 </div>
             </div>
             <div class="row" style="margin-top: 10px;">
                 <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row" style="color: #ffffff; background-color: #ff2100; text-align: center; height: 20px;">
+                        <!-- <div class="col-md-12">
                             <img src="images/highlights.png" class="img-responsive" style="width:100%; display: block;"/>
-                        </div>
+                        </div> -->
+                        <span style="font-size: 12px; width: 100%;">Highlighted Operations</span>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top: 5px;">
                         <div class="col-md-12">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -708,59 +762,59 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 d-flex">
-                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                <div class="col-md-8 d-flex" style="line-height: 1;">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; min-height: 75px; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
                         <div style="display: table-cell; vertical-align: middle;">
-                            <div>
+                            <div style="margin-top: 3px; margin-bottom: 3px;">
                                 <span><i class="fas fa-globe fa-2x" style="color: #145099;"></i></span>
                                 <br/>
                                 <span style="color: #ffffff; font-weight: bold;">30</span>
                                 <br/>
-                                <span style="color: #145099; font-size: 12px;">All Operations</span>
+                                <span style="color: #145099; font-size: 11px;">All<br>Operations</span>
                             </div>
                         </div>
                     </div>
-                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; min-height: 75px; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
                         <div style="display: table-cell; vertical-align: middle;">
-                            <div>
+                            <div style="margin-top: 3px; margin-bottom: 3px;">
                                 <span><i class="fas fa-globe fa-2x" style="color: #145099;"></i></span>
                                 <br/>
                                 <span style="color: #ffffff; font-weight: bold;">27</span>
                                 <br/>
-                                <span style="color: #145099; font-size: 12px;">Active Countries</span>
+                                <span style="color: #145099; font-size: 11px;">Active<br>Countries</span>
                             </div>
                         </div>
                     </div>
-                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; min-height: 75px; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
                         <div style="display: table-cell; vertical-align: middle;">
-                            <div>
+                            <div style="margin-top: 3px; margin-bottom: 3px;">
                                 <span><i class="fas fa-dollar-sign fa-2x" style="color: #145099;"></i></span>
                                 <br/>
                                 <span style="color: #ffffff; font-weight: bold;">500 M</span>
                                 <br/>
-                                <span style="color: #145099; font-size: 12px;">Required Funds</span>
+                                <span style="color: #145099; font-size: 11px;">Required<br>Funds</span>
                             </div>
                         </div>
                     </div>
-                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; min-height: 75px; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
                         <div style="display: table-cell; vertical-align: middle;">
-                            <div>
+                            <div style="margin-top: 3px; margin-bottom: 3px;">
                                 <span><i class="fas fa-sack-dollar fa-2x" style="color: #145099;"></i></span>
                                 <br/>
                                 <span style="color: #ffffff; font-weight: bold;">61%</span>
                                 <br/>
-                                <span style="color: #145099; font-size: 12px;">Coverage Funds</span>
+                                <span style="color: #145099; font-size: 11px;">Coverage<br>Funds</span>
                             </div>
                         </div>
                     </div>
-                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; min-height: 75px; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
                         <div style="display: table-cell; vertical-align: middle;">
-                            <div>
+                            <div style="margin-top: 3px; margin-bottom: 3px;">
                                 <span><i class="fas fa-users fa-2x" style="color: #145099;"></i></span>
                                 <br/>
                                 <span style="color: #ffffff; font-weight: bold;">20 M</span>
                                 <br/>
-                                <span style="color: #145099; font-size: 12px;">Targeted Population</span>
+                                <span style="color: #145099; font-size: 11px;">Targeted<br>Population</span>
                             </div>
                         </div>
                     </div>
@@ -801,27 +855,27 @@
 
     <div class="row" style="margin-top: 15px;">
         <div class="col-md-7">
-            <div id="vmap" style="height: 400px; border: solid #7f7f7f; border-width: 1px;"></div>
+            <div id="vmap" style="height: 450px; border: solid #7f7f7f; border-width: 1px;"></div>
         </div>
-        <div class="col-md-2" style="text-align: justify; text-justify: inter-word; height: 400px; overflow-x:hidden; overflow-y:auto;">
+        <div class="col-md-2" style="text-align: justify; text-justify: inter-word; height: 450px; overflow-x:hidden; overflow-y:auto;">
             <div class="row">
                 <div class="col-md-12" style="line-height: 1;">
                     <span style="font-weight: bold;">Disaster RSS feed</span>
                     <br/>
                     <span style="font-size: 9px; font-weight: bold;">Sep. 09, 2019 - NASA Estimates Hurricane Dorian's Massive Rainfalls</span>
                     <br/>
-                    <span style="font-size: 9px;">I've been trying to get a border on either side of my white container. It's just not showing. I've tried to put it in three different elements just in case! (see below). Any ideas on how to make it work?</span>
+                    <span style="font-size: 9px;">I've been trying to get a border on either side of my white container.</span>
                     <img src="images/hurricane.png" style="width:100%;"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="chart1" style="height: 200px;"></div>
+                    <div id="chart1" style="height: 150px;"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="chart2" style="height: 200px;"></div>
+                    <div id="chart2" style="height: 150px;"></div>
                 </div>
             </div>
         </div>
@@ -838,7 +892,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="height: 360px; overflow-x:hidden; overflow-y:auto;">
+                <div class="col-md-12" style="height: 410px; overflow-x:hidden; overflow-y:auto;">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row">
@@ -935,8 +989,8 @@
     </div>
 
     <div class="row" style="margin-top: 15px;">
-        <div class="col-md-9">
-            <div class="row" style="color: #ffffff; background-color: #2155b4; height: 30px;">
+        <div class="col-md-9" style="font-size: 11px;">
+            <div class="row" style="font-size: 16px; color: #ffffff; background-color: #2155b4; height: 30px; vertical-align: middle;">
                 &nbsp;KEY DOCUMENTS
             </div>
             <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
@@ -947,7 +1001,7 @@
                 </div>
                 <div class="col-md-3 inner-addon left-addon">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search" class="form-control" />
+                    <input type="text" placeholder="Search" class="form-control" style="font-size: 11px; border-radius: 0px;"/>
                 </div>
             </div>
             
@@ -1063,7 +1117,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="height: 240px; overflow-x:hidden; overflow-y:auto; line-height: 1;">
+                <div class="col-md-12" style="height: 250px; overflow-x:hidden; overflow-y:auto; line-height: 1;">
                     <ul class="list-group">
                         <li class="list-group-item" style="margin-top: 3px;">
                             <div class="row">
@@ -1119,9 +1173,9 @@
         </div>
     </div>
 
-    <div class="row" style="margin-top: 15px;">
+    <div class="row" style="margin-top: 15px; font-size: 11px;">
         <div class="col-md-9">
-            <div class="row" style="color: #ffffff; background-color: #35aa47; height: 30px;">
+            <div class="row" style=" font-size: 16px; color: #ffffff; background-color: #35aa47; height: 30px;">
                 &nbsp;DOCUMENTS LIBRARY
             </div>
             <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
@@ -1132,37 +1186,37 @@
                 </div>
                 <div class="col-md-3 inner-addon left-addon">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search" class="form-control" />
+                    <input type="text" placeholder="Search" class="form-control" style="font-size: 11px; border-radius: 0px;"/>
                 </div>
             </div>                
             <div class="row" style="width: 100%; margin-top: 10px;">
                 <div class="col-md-3">
                     <div class="row">
-                        <input type="text" class="form-control" placeholder="Report Title"/>
+                        <input type="text" class="form-control" placeholder="Report Title" style="font-size: 11px;"/>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Region</option>
                             <option>AL</option>
                             <option>NY</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Mission</option>
                             <option>Misson 1</option>
                             <option>Misson 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Area of Work</option>
                             <option>Work 1</option>
                             <option>Work 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px;">Search</button>
+                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px; font-size: 11px;">Search</button>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -1263,7 +1317,7 @@
                 </div>
             </div>
 
-            <div class="row" style="color: #ffffff; background-color: #a66e49; height: 30px; margin-top: 10px;">
+            <div class="row" style="font-size: 16px; color: #ffffff; background-color: #a66e49; height: 30px; margin-top: 10px;">
                 &nbsp;DOE PROJECTS
             </div>
             <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
@@ -1275,78 +1329,78 @@
                 </div>
                 <div class="col-md-3 inner-addon left-addon">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search" class="form-control" />
+                    <input type="text" placeholder="Search" class="form-control" style="font-size: 11px; border-radius: 0px;"/>
                 </div>
             </div>                
             <div class="row" style="width: 100%; margin-top: 10px;">
                 <div class="col-md-3">
                     <div class="row">
-                        <input type="text" class="form-control" placeholder="Title"/>
+                        <input type="text" class="form-control" placeholder="Title" style="font-size: 11px;"/>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Division</option>
                             <option>Division 1</option>
                             <option>Division 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Unit</option>
                             <option>Unit 1</option>
                             <option>Unit 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Regional Coverage</option>
                             <option>RC 1</option>
                             <option>RC 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Mission</option>
                             <option>Mission 1</option>
                             <option>Mission 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Project Status</option>
                             <option>Status 1</option>
                             <option>Status 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Cr</option>
                             <option>Cr 1</option>
                             <option>Cr 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <input placeholder="Start Date" type="text" class="form-control" id="start-date-picker" />
+                        <input placeholder="Start Date" type="text" class="form-control" id="start-date-picker" style="font-size: 11px;" />
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <input placeholder="End Date" type="text" class="form-control" id="end-date-picker" />
+                        <input placeholder="End Date" type="text" class="form-control" id="end-date-picker" style="font-size: 11px;" />
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Context Type</option>
                             <option>Type 1</option>
                             <option>Type 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <select class="form-control">
+                        <select class="form-control" style="font-size: 11px;">
                             <option value="" disabled selected>Primary Sector</option>
                             <option>Sector 1</option>
                             <option>Sector 2</option>
                         </select>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px;">Search</button>
+                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px; font-size: 11px;">Search</button>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -1847,29 +1901,49 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span style="color: #ed1c24;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Trainings</span>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Induction Training</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Management Training</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Camp Management Trainings</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;My and Resilience (TRR)</span></div>
-                        </li>
-                        <li class="list-group-item">
-                            <span style="color: #ed1c24;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Other Trainings</span>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;IML Staff</span></div>
-                        </li>
-                    </ul>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="heading1" style="background-color: #ffffff;">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                                aria-expanded="false" aria-controls="collapse1">
+                                    &nbsp;&nbsp;<i class="fa"></i>&nbsp;
+                                    <span style="color: #ed1c24;">Trainings</span>
+                                </a>
+                            </div>                            
+                            <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordion">
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Induction Training</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Management Training</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Camp Management Trainings</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;My and Resilience (TRR)</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading2" style="background-color: #ffffff;">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                                aria-expanded="false" aria-controls="collapse2">
+                                    &nbsp;&nbsp;<i class="fa"></i>&nbsp;
+                                    <span style="color: #ed1c24;">Other Trainings</span>
+                                </a>
+                            </div>                            
+                            <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;IML Staff</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -1885,47 +1959,67 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span style="color: #045d8b;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Resources</span>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAS</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAT</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Int</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;The</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Hu</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;MI</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;OC</span></div>
-                        </li>
-                        <li class="list-group-item">
-                            <span style="color: #045d8b;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Resources</span>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
-                        </li>
-                        <li class="list-group-item" style="background-color: #f1f3f8;">
-                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
-                        </li>
-                    </ul>
+                    <div id="accordion2">
+                        <div class="card">
+                            <div class="card-header" id="heading3" style="background-color: #ffffff;">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapse3"
+                                aria-expanded="false" aria-controls="collapse3">
+                                    &nbsp;&nbsp;<i class="fa"></i>&nbsp;
+                                    <span style="color: #ed1c24;">Resources</span>
+                                </a>
+                            </div>                            
+                            <div id="collapse3" class="collapse show" aria-labelledby="heading3" data-parent="#accordion2">
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAS</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAT</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Int</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;The</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Hu</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;MI</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;OC</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading4" style="background-color: #ffffff;">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse4"
+                                aria-expanded="false" aria-controls="collapse4">
+                                    &nbsp;&nbsp;<i class="fa"></i>&nbsp;
+                                    <span style="color: #ed1c24;">Resources</span>
+                                </a>
+                            </div>                            
+                            <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordion2">
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #f1f3f8;">
+                                        <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
