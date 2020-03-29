@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="font-awesome/css/all.css">
+
+    <!-- fullcalendar -->
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.css' rel='stylesheet' />
+    <!-- fullcalendar -->
+
+    <!-- vector map -->
+    <link href="libs/jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
+    <!-- vector map -->
+
+    <!-- bootstrap datepicker -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" rel="stylesheet"/>
+    <!-- bootstrap datepicker -->
+
+    <!-- slick carousel -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" rel="stylesheet" />
+    <!-- slick carousel -->
+
+    <!-- datatable-->
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- datatable-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.12/js/bootstrap-select.min.js"></script>
+
+    <!-- fullcalendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <!-- fullcalendar -->
+
+    <!-- vector map -->
+    <script src="libs/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+    <script src="libs/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+    <script src="libs/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+    <!-- vector map -->
+
+    <!-- highcharts map -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- highcharts map -->
+
+    <!-- bootstrap datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- bootstrap datepicker -->
+
+    <!-- slick carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <!-- slick carousel -->
+
+    <!-- datatable-->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <!-- datatable-->
+
+    <!-- navbar-->
+    <link rel="stylesheet" href="libs/css/bootnavbar.css">
+    <!-- navbar-->
+
+    <style>
+        .btn {
+            border-radius: 0px;
+            vertical-align: top;
+        }
+
+        /* enable absolute positioning */
+        .inner-addon {
+            position: relative;
+        }
+
+        /* style icon */
+        .inner-addon .fas {
+            position: absolute;
+            padding: 10px;
+            pointer-events: none;
+        }
+
+        /* align icon */
+        /*.left-addon .glyphicon  { left:  0px;}*/
+
+        /* add padding  */
+        .left-addon input  { padding-left:  30px; }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+        .fc-head-container {
+            color: #ffffff;
+            background-color: #8cb74c;
+        }
+
+        .fc-left {
+            color: #8cb74c;
+        }
+
+        .jqvmap-zoomin, .jqvmap-zoomout {
+            padding: 0px;
+        }
+
+        /* Date Picker */
+        .next {
+            display: none;
+        }
+
+        .datepicker-switch {
+            background-color: #ececec;
+        }
+
+        #nextcalendar {
+            font-size: 62.5%;
+        }
+
+        .datepicker, .datepicker-inline, .datepicker-days {
+            width: 90%;
+        }
+
+        .datepicker.datepicker-inline td, .datepicker.datepicker-inline th, .datepicker.dropdown-menu td, .datepicker.dropdown-menu th {
+            padding: 0px;
+        }
+        /* Date Picker */
+
+        a {
+            color: #000000;
+        }
+        a:hover {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        /* Slick Carousel */
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .slider {
+            /* width: 50%;
+            margin: 100px auto; */
+            margin-top: 10px;
+            margin-left: 40px;
+        }
+
+        .slick-slide {
+            margin: 0px 20px;
+        }
+
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+        
+        .slick-slide {
+            transition: all ease-in-out .3s;
+            opacity: .2;
+        }
+        
+        .slick-active {
+            /* opacity: .5; */
+            opacity: 1;
+        }
+
+        .slick-current {
+            opacity: 1;
+        }
+
+        .kdoc {
+            max-width: 68px;
+            max-height: 88px;
+        }
+
+        .dlib {
+            max-width: 68px;
+            max-height: 88px;
+        }
+
+        .dlibtext {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .list-group-item {
+            padding: inherit;
+        }
+
+        .datepicker {
+            width: inherit;
+        }
+
+        .topheaderlink1 {
+            width: 13%;
+            padding-left: 2px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .topheaderlink2 {
+            width: 10%;
+            padding-left: 2px;
+            text-align: center;
+            min-width: 75px;
+        }
+
+        .topheaderlink3 {
+            width: 10%;
+            padding-left: 3px;
+            text-align: center;
+            min-width: 110px;
+        }
+
+        button.dropdown-toggle {
+            font-size: 10px;
+        }
+
+        .fc-title {
+            font-size: 10px;
+        }
+
+        .fc-dayGrid-view .fc-body .fc-row {
+            min-height: 0px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('.selectpicker').selectpicker();
+        });
+
+        $(document).ready(function(){
+            $('.dropdown-submenu a.test').on("click", function(e){
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            $('#vmap').vectorMap({
+                map: 'world_en',
+                backgroundColor: '#ffffff',
+                color: '#cecece',
+                hoverOpacity: 0.7,
+                selectedColor: '#666666',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: ['#C8EEFF', '#006491'],
+                normalizeFunction: 'polynomial'
+            });
+
+            $(".keydoc").slick({
+                dots: false,
+                infinite: true,
+                slidesToShow: 8,
+                slidesToScroll: 8,
+                rows: 2
+            });
+            $(".doclib").slick({
+                dots: false,
+                infinite: true,
+                slidesToShow: 6,
+                slidesToScroll: 3,
+                rows: 2
+            });
+
+            $('#start-date-picker').datepicker();
+            $('#end-date-picker').datepicker();
+
+            $('#doelist').DataTable({
+                lengthMenu: [5, 10, 20, 50]
+            });
+
+            $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+                }
+                var $subMenu = $(this).next(".dropdown-menu");
+                $subMenu.toggleClass('show');
+
+                $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+                    $('.dropdown-submenu .show').removeClass("show");
+                });
+
+                return false;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendarInteraction.Draggable;
+
+            /* initialize the external events
+             -----------------------------------------------------------------*/
+//            var containerEl = document.getElementById('external-events-list');
+//            new Draggable(containerEl, {
+//                itemSelector: '.fc-event',
+//                eventData: function(eventEl) {
+//                    return {
+//                        title: eventEl.innerText.trim()
+//                    }
+//                }
+//            });
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new Calendar(calendarEl, {
+                aspectRatio: 1.1,
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                header: {
+                    left: 'title',
+                    right: ''
+                },
+                events: [
+                    {
+                        title: 'Event 1',
+                        start: '2020-03-05',
+                        color: '#eab34a',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Event 2',
+                        start: '2020-03-08',
+                        color: '#60b6a1',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Event 1',
+                        start: '2020-03-24',
+                        color: '#eab34a',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Event 3',
+                        start: '2020-03-26',
+                        color: '#3080a6',
+                        textColor: '#ffffff'
+                    },
+                    {
+                        title: 'Event 4',
+                        start: '2020-03-28',
+                        color: '#8bb64b',
+                        textColor: '#ffffff'
+                    }
+                ],
+                defaultView: 'dayGridMonth',
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function(arg) {
+                }
+            });
+            calendar.render();
+            var oldhtml = $('.fc-left').html();
+            oldhtml = oldhtml.replace(/<(.|\n)*?>/g, '');
+            oldhtml = '<h2>'+oldhtml+"&nbsp;<span style='color: #99d9ea; font-size: large; font-weight: bold;'>Events</span>"+'</h2>';
+            $('.fc-left').html(oldhtml);
+
+//            var ncalendarEl = document.getElementById('nextcalendar');
+//            var ncalendar = new Calendar(ncalendarEl, {
+//                plugins: ['dayGrid'],
+//                header: {
+//                    left: 'title',
+//                    right: ''
+//                },
+//                titleFormat: {
+//                  month: 'long'
+//                },
+//                columnHeaderFormat: {
+//                    weekday: 'narrow'
+//                },
+//                defaultDate: moment().add(1, "months").format('YYYY-MM-DD'),
+//                aspectRatio: 1,
+//                defaultView: 'dayGridMonth',
+//                editable: true,
+//                droppable: true, // this allows things to be dropped onto the calendar
+//                drop: function(arg) {
+//                }
+//            });
+//            ncalendar.render();
+//            ncalendarEl.childNodes[0].childNodes[0].style='color: black; background-color: #f2f2f2; width:100%;';
+
+            var nmonth = new Date();
+            nmonth.setMonth(nmonth.getMonth()+1);
+            $('#nextcalendar').datepicker({
+                startDate: nmonth
+            });
+
+            var myChart1 = Highcharts.chart('chart1', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Appeals Over the last Year',
+                    style: {
+                        fontSize: '10px'
+                    }
+                },
+                xAxis: {
+                    categories: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+                },
+                yAxis: {
+                    title: ''
+                },
+                series: [{
+                    name: 'Appeals',
+                    data: [0, 0, 2, 2, 3, 5, 4, 3, 2, 4, 2, 3],
+                    color: '#6088ab'
+                }, {
+                    name: 'CERFs',
+                    data: [7, 5, 4, 6, 6, 4, 4, 6, 7, 8, 8, 3],
+                    color: '#bd4135'
+                }]
+            });
+
+            var myChart2 = Highcharts.chart('chart2', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Appeals by Year',
+                    style: {
+                        fontSize: '10px'
+                    }
+                },
+                xAxis: {
+                    categories: ['2016', '2017', '2018', '2019']
+                },
+                yAxis: {
+                    title: ''
+                },
+                series: [{
+                    name: 'Appeals',
+                    data: [15, 16, 15, 14],
+                    color: '#6088ab'
+                }, {
+                    name: 'CERFs',
+                    data: [22, 20, 42, 40],
+                    color: '#bd4135'
+                }]
+            });
+        });
+    </script>
+    <title>Data Portal Home</title>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="height: 20px;">
+
+    </div>
+    <div class="row" style="height: 10px; background-color: #376876;">
+
+    </div>
+    <div class="row" style="margin-bottom: 2px;">
+        <div class="col-md-2">
+            <img src="images/logo.png" style="height: 95%;"/>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2 text-right">
+                    <select class="selectpicker" data-width="fit" style="font-size:10px;">
+                        <option data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+                        <option data-content='<span class="flag-icon flag-icon-es"></span> Español'>Español</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-10 text-left">
+                    <div class="row">
+                        <div style="width: 13%; min-width: 100px;">
+                            <button class="btn" style="color: #ffffff; background-color: #47c4ca; width: 100%; font-size: 12px;">Framework</button>
+                        </div>
+                        <div class="topheaderlink1">
+                            <button class="btn" style="color: #ffffff; background-color: #2980b9; width: 100%; font-size: 12px;">Action</button>
+                        </div>
+                        <div class="topheaderlink1">
+                            <button class="btn" style="color: #ffffff; background-color: #16a085; width: 100%; font-size: 12px;">Compendium</button>
+                        </div>
+                        <div class="topheaderlink1">
+                            <button class="btn" style="color: #ffffff; background-color: #9bbb59; width: 100%; font-size: 12px;">Manual</button>
+                        </div>
+                        <div class="topheaderlink1">
+                            <button class="btn" style="color: #ffffff; background-color: #f39c12; width: 100%; font-size: 12px;">Missions</button>
+                        </div>
+                        <div class="topheaderlink1">
+                            <button class="btn" style="color: #ffffff; background-color: #95a5a6; width: 100%; font-size: 12px;">Deployments</button>
+                        </div>
+                        <div class="topheaderlink2">
+                            <img src="images/faq.png" style="width: 100%;"/>
+                        </div>
+                        <div class="topheaderlink2">
+                            <img src="images/feedback.png" style="width: 100%;"/>
+                        </div>
+                        <div style="width: 2%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 text-right" style="line-height: 1;">
+                    <span style="font-size:9px; color: #3f48cc; font-weight: bold;">Jone-DOE</span>
+                    <span style="font-size:9px; color: #1084d1;">Sign Out</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="background-color: #3498db;">
+        <div style="width: 5%; min-width: 25px; max-width: 40px; border: solid 3px #eef3f3; background-color: #eef3f3;">
+            <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" id="navbarDropdown">
+                <i class="fa fa-align-justify" style="font-size: 35px; color: #000000; background-color: #eef3f3; border-color: #eef3f3;"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Rabaul Volcanological Observatory on Framework
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                        <li><a class="dropdown-item" href="#">Response 1</a></li>
+                        <li><a class="dropdown-item" href="#">Response 2</a></li>
+                        <li><a class="dropdown-item" href="#">Response 3</a></li>
+                        <li><a class="dropdown-item" href="#">Response 4</a></li>
+                        <li><a class="dropdown-item" href="#">Response 5</a></li>
+                        <li><a class="dropdown-item" href="#">Response 6</a></li>
+                        <li><a class="dropdown-item" href="#">Response 7</a></li>
+                        <li><a class="dropdown-item" href="#">Response 8</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Jacket
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="#">Jacket 1</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 2</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 3</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 4</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 5</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 6</a></li>
+                        <li><a class="dropdown-item" href="#">Jacket 7</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown28" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Jacket 8
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown28">
+                                <li><a class="dropdown-item" href="#">Jacket 8.1</a></li>
+                                <li><a class="dropdown-item" href="#">Jacket 8.2</a></li>
+                                <li><a class="dropdown-item" href="#">Jacket 8.3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Response
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                        <li><a class="dropdown-item" href="#">Accessories 1</a></li>
+                        <li><a class="dropdown-item" href="#">Accessories 2</a></li>
+                        <li><a class="dropdown-item" href="#">Accessories 3</a></li>
+                        <li><a class="dropdown-item" href="#">Accessories 4</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-md-8 text-left">
+                    <div class="row">
+                        <div style='width: 10%; text-align: center; min-width: 110px;'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #47c4ca;"><i class="fas fa-home"></i>&nbsp;&nbsp;Home</button></a>
+                        </div>
+                        <div class='topheaderlink3'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #2980b9;"><i class="fas fa-compact-disc"></i>&nbsp;&nbsp;Projects</button></a>
+                        </div>
+                        <div class='topheaderlink3'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #16a085;"><i class="fas fa-rocket"></i>&nbsp;&nbsp;Documents</button></a>
+                        </div>
+                        <div class='topheaderlink3'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #9bbb59;"><i class="fas fa-asterisk"></i>&nbsp;&nbsp;Intranet</button></a>
+                        </div>
+                        <div class='topheaderlink3'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #f39c12;"><i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Roster</button></a>
+                        </div>
+                        <div class='topheaderlink3'>
+                            <a href='blank.html' target="_blank"><button class="btn" style="width: 100%; font-size: 12px; color: #ffffff; background-color: #95a5a6;"><i class="fas fa-lightbulb"></i>&nbsp;&nbsp;About</button></a>
+                        </div>
+                        <div style="width: 40%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-2 inner-addon left-addon" style="padding-top: 1px; padding-right: 5px;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search this site..." class="form-control" style="font-size: 12px; border-radius: 0px;" />
+                </div>
+            </div>
+            <div class="row" style="border-top: solid 4px #000000;">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="height: 10px;">
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-8" style="background-color: #fcd039; font-size: 11px;">
+                    <span><br>Who we are?</span>
+                    <span style="color: #ffffff; font-weight: bold;"><br>DO</span>
+                    <span style="font-weight: bold;"><br>Department of Onions</span>
+                    <span>
+                        <br>Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
+                        To use Font Awesome icons, add the following to your HTML page (No downloading or installation is required):
+                    </span>
+                    <span style="display:block; text-align: right;">
+                        <br>
+                        <button class="btn" style="color: #ffffff; background-color: #f39c12;">Learn more <i class="fas fa-play"></i></button>
+                    </span>
+                </div>
+                <div class="col-md-4 p-0">
+                    <img src="images/back.png" class="img-responsive" style="width:100%; display: block;"/>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="images/highlights.png" class="img-responsive" style="width:100%; display: block;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="font-size: 11px;">Select Year</span>
+                                </div>
+                                <select class="form-control" style="font-size: 11px;">
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="font-size: 11px;">Select Month</span>
+                                </div>
+                                <select class="form-control" style="font-size: 11px;">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 d-flex">
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span><i class="fas fa-globe fa-2x" style="color: #145099;"></i></span>
+                                <br/>
+                                <span style="color: #ffffff; font-weight: bold;">30</span>
+                                <br/>
+                                <span style="color: #145099; font-size: 12px;">All Operations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span><i class="fas fa-globe fa-2x" style="color: #145099;"></i></span>
+                                <br/>
+                                <span style="color: #ffffff; font-weight: bold;">27</span>
+                                <br/>
+                                <span style="color: #145099; font-size: 12px;">Active Countries</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span><i class="fas fa-dollar-sign fa-2x" style="color: #145099;"></i></span>
+                                <br/>
+                                <span style="color: #ffffff; font-weight: bold;">500 M</span>
+                                <br/>
+                                <span style="color: #145099; font-size: 12px;">Required Funds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span><i class="fas fa-sack-dollar fa-2x" style="color: #145099;"></i></span>
+                                <br/>
+                                <span style="color: #ffffff; font-weight: bold;">61%</span>
+                                <br/>
+                                <span style="color: #145099; font-size: 12px;">Coverage Funds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-0 text-center align-middle" style="min-width: 75px; width: 20%; height:100%; background-color: #66a4f1; border-radius: 8px; display: table; overflow: hidden; margin:5px;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span><i class="fas fa-users fa-2x" style="color: #145099;"></i></span>
+                                <br/>
+                                <span style="color: #ffffff; font-weight: bold;">20 M</span>
+                                <br/>
+                                <span style="color: #145099; font-size: 12px;">Targeted Population</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding:0px; background-image: linear-gradient(#8db351, #efefef);">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 25px;">
+                            <div id='nextcalendar'></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 10px;">
+                            <div id='external-events'>
+                                <div id='external-events-list' style="display: inline-block;">
+                                    <div class='fc-event' style="margin-left: 5px; background-color: #eab34a; border-color: #eab34a;">Event 1</div>
+                                    <div class='fc-event' style="margin-left: 5px; margin-top: 5px; background-color: #60b6a1; border-color: #60b6a1;">Event 2</div>
+                                    <div class='fc-event' style="margin-left: 5px; margin-top: 5px; background-color: #3080a6; border-color: #3080a6;">Event 3</div>
+                                    <div class='fc-event' style="margin-left: 5px; margin-top: 5px; background-color: #8bb64b; border-color: #8bb64b;">Event 4</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-7">
+            <div id="vmap" style="height: 400px; border: solid #7f7f7f; border-width: 1px;"></div>
+        </div>
+        <div class="col-md-2" style="text-align: justify; text-justify: inter-word; height: 400px; overflow-x:hidden; overflow-y:auto;">
+            <div class="row">
+                <div class="col-md-12" style="line-height: 1;">
+                    <span style="font-weight: bold;">Disaster RSS feed</span>
+                    <br/>
+                    <span style="font-size: 9px; font-weight: bold;">Sep. 09, 2019 - NASA Estimates Hurricane Dorian's Massive Rainfalls</span>
+                    <br/>
+                    <span style="font-size: 9px;">I've been trying to get a border on either side of my white container. It's just not showing. I've tried to put it in three different elements just in case! (see below). Any ideas on how to make it work?</span>
+                    <img src="images/hurricane.png" style="width:100%;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="chart1" style="height: 200px;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="chart2" style="height: 200px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" style="text-align: justify; line-height: 1;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="display: table; width: 100%; background-color: #f15a46; height: 40px; overflow: hidden;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span style="font-size: 14px; color: #ffffff;">&nbsp;EMERGENCY ALERTS!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="height: 360px; overflow-x:hidden; overflow-y:auto;">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div style="display: table; width: 100%; height: 100%; overflow: hidden;">
+                                        <div style="display: table-cell; vertical-align: middle;">
+                                            <div>
+                                                <span><i class="fas fa-volcano fa-2x" style="color: #f15a46;"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <span style="font-size: 12px; color: #39a8d8;">Papua New Guinea: Mt. Manam Volcano - Jun 2019</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #adbdd4;">Affected countries: Papua New Guinea</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 12px;">
+                                        Based on the report from Rabaul Volcanological Observatory, on Guinean time, a volcanic activity was reported on a basaltic in Madang province, on the northeaset coast
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div style="display: table; width: 100%; height: 100%; overflow: hidden;">
+                                        <div style="display: table-cell; vertical-align: middle;">
+                                            <div>
+                                                <span><i class="fas fa-heart-rate fa-2x" style="color: #f15a46;"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <span style="font-size: 12px; color: #39a8d8;">Philippines: Earthquakes - Jun 2019</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #adbdd4;">Affected countries: Philippines</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 12px;">
+                                        Based on the report from Rabaul Volcanological Observatory, on Guinean time, a volcanic activity was reported on a basaltic in Madang province, on the northeaset coast
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div style="display: table; width: 100%; height: 100%; overflow: hidden;">
+                                        <div style="display: table-cell; vertical-align: middle;">
+                                            <div>
+                                                <span><i class="fas fa-atom fa-2x" style="color: #f15a46;"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <span style="font-size: 12px; color: #39a8d8;">Philippines: Dengue Outbreak - Jul 2019</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #adbdd4;">Affected countries: Philippines</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 12px;">
+                                        Based on the report from Rabaul Volcanological Observatory, on Guinean time, a volcanic activity was reported on a basaltic in Madang province, on the northeaset coast
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <nav aria-label="Pagenation4Emergency">
+                                <ul class="pagination" style="font-size: 13px;">
+                                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-9">
+            <div class="row" style="color: #ffffff; background-color: #2155b4; height: 30px;">
+                &nbsp;KEY DOCUMENTS
+            </div>
+            <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
+                <div class="col-md-9" style="margin-top: 5px;">
+                    &nbsp;<i class="fa fa-plus" style="color: #4fa072;"></i><a href="#">&nbsp;New</a>
+                    &nbsp;<i class="fa fa-upload" style="color: #4fa072;"></i><a href="#">&nbsp;Upload</a>
+                    &nbsp;<i class="fa fa-redo-alt fa-rotate-270" style="color: #4fa072;"></i><a href="#">&nbsp;Refresh</a>
+                </div>
+                <div class="col-md-3 inner-addon left-addon">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search" class="form-control" />
+                </div>
+            </div>
+            
+            <div class="row" style="width: 100%;">
+                <div class="col-md-12">
+                    <section class="keydoc slider">
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 1</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="kdoc">
+                            <span style="text-align: center;">Doc 2</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="kdoc">
+                            <span style="text-align: center;">Doc 3</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 4</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 5</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 6</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 7</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 8</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 9</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 10</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 11</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 12</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="kdoc">
+                            <span style="text-align: center;">Doc 13</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 14</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 15</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="kdoc">
+                            <span style="text-align: center;">Doc 16</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 17</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 18</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 19</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 20</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="kdoc">
+                            <span style="text-align: center;">Doc 21</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 22</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="kdoc">
+                            <span style="text-align: center;">Doc 23</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="display: table; width: 100%; background-color: #6d98d4; height: 30px; overflow: hidden;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span style="font-size: 14px; color: #ffffff;">&nbsp;NEWS FEED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="height: 240px; overflow-x:hidden; overflow-y:auto; line-height: 1;">
+                    <ul class="list-group">
+                        <li class="list-group-item" style="margin-top: 3px;">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="images/nfeed1.png" class="img-responsive" width="100%;"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <span style="font-size: 12px; color: #c20017;">FOX NEWS @NIGHT</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #003366;">El Paso GOP chairman: We still have a lot of healing to do</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="margin-top: 3px;">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="images/nfeed2.png" class="img-responsive" width="100%;"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <span style="font-size: 12px; color: #c20017;">THE INGRAHAM ANGLE</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #003366;">Democrats fan the flames of hatred</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="margin-top: 3px;">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="images/nfeed3.png" class="img-responsive" width="100%;"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <span style="font-size: 12px; color: #c20017;">TUCKER: CARLSON TONIGHT</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #003366;">Left thinks only bad people oppose gun control</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="margin-top: 3px;">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="images/nfeed4.png" class="img-responsive" width="100%;"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <span style="font-size: 12px; color: #c20017;">HANNITY</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #003366;">Lawrence Jones asks Chicago residents about violent crime in their</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-9">
+            <div class="row" style="color: #ffffff; background-color: #35aa47; height: 30px;">
+                &nbsp;DOCUMENTS LIBRARY
+            </div>
+            <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
+                <div class="col-md-9" style="margin-top: 5px;">
+                    &nbsp;<i class="fa fa-plus" style="color: #4fa072;"></i><a href="#">&nbsp;New</a>
+                    &nbsp;<i class="fa fa-upload" style="color: #4fa072;"></i><a href="#">&nbsp;Upload</a>
+                    &nbsp;<i class="fa fa-redo-alt fa-rotate-270" style="color: #4fa072;"></i><a href="#">&nbsp;Refresh</a>
+                </div>
+                <div class="col-md-3 inner-addon left-addon">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search" class="form-control" />
+                </div>
+            </div>                
+            <div class="row" style="width: 100%; margin-top: 10px;">
+                <div class="col-md-3">
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Report Title"/>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Region</option>
+                            <option>AL</option>
+                            <option>NY</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Mission</option>
+                            <option>Misson 1</option>
+                            <option>Misson 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Area of Work</option>
+                            <option>Work 1</option>
+                            <option>Work 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px;">Search</button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <section class="doclib slider">
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 1</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 2</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 3</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 4</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 5</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 6</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 7</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 8</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 9</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 10</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 11</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 12</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 13</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 14</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 15</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 16</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 17</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 18</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 19</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 20</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc2.png" class="dlib">
+                            <span class="dlibtext">Doc 21</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 22</span>
+                        </div>
+                        <div>
+                            <img src="images/kdoc1.png" class="dlib">
+                            <span class="dlibtext">Doc 23</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row" style="color: #ffffff; background-color: #a66e49; height: 30px; margin-top: 10px;">
+                &nbsp;DOE PROJECTS
+            </div>
+            <div class="row" style="margin-top: 5px; border-style: solid; border-width: 1px; border-color: #8d8d8d; background-color: #f2f3f4;">
+                <div class="col-md-9" style="margin-top: 5px;">
+                    &nbsp;<i class="fa fa-plus" style="color: #4fa072;"></i><a href="#">&nbsp;New</a>
+                    &nbsp;<i class="fa fa-upload" style="color: #4fa072;"></i><a href="#">&nbsp;Upload</a>
+                    &nbsp;<i class="fa fa-redo-alt fa-rotate-270" style="color: #4fa072;"></i><a href="#">&nbsp;Refresh</a>
+                    &nbsp;<i class="fa fa-download" style="color: #4fa072;"></i><a href="#">&nbsp;Download/export</a>
+                </div>
+                <div class="col-md-3 inner-addon left-addon">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search" class="form-control" />
+                </div>
+            </div>                
+            <div class="row" style="width: 100%; margin-top: 10px;">
+                <div class="col-md-3">
+                    <div class="row">
+                        <input type="text" class="form-control" placeholder="Title"/>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Division</option>
+                            <option>Division 1</option>
+                            <option>Division 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Unit</option>
+                            <option>Unit 1</option>
+                            <option>Unit 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Regional Coverage</option>
+                            <option>RC 1</option>
+                            <option>RC 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Mission</option>
+                            <option>Mission 1</option>
+                            <option>Mission 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Project Status</option>
+                            <option>Status 1</option>
+                            <option>Status 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Cr</option>
+                            <option>Cr 1</option>
+                            <option>Cr 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <input placeholder="Start Date" type="text" class="form-control" id="start-date-picker" />
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <input placeholder="End Date" type="text" class="form-control" id="end-date-picker" />
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Context Type</option>
+                            <option>Type 1</option>
+                            <option>Type 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <select class="form-control">
+                            <option value="" disabled selected>Primary Sector</option>
+                            <option>Sector 1</option>
+                            <option>Sector 2</option>
+                        </select>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <button class="form-control btn btn-success" type="button" style="border-radius: 4px;">Search</button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <table id="doelist" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>61</td>
+                                <td>2011/04/25</td>
+                                <td>$320,800</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                                <td>63</td>
+                                <td>2011/07/25</td>
+                                <td>$170,750</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                                <td>66</td>
+                                <td>2009/01/12</td>
+                                <td>$86,000</td>
+                            </tr>
+                            <tr>
+                                <td>Cedric Kelly</td>
+                                <td>Senior Javascript Developer</td>
+                                <td>Edinburgh</td>
+                                <td>22</td>
+                                <td>2012/03/29</td>
+                                <td>$433,060</td>
+                            </tr>
+                            <tr>
+                                <td>Airi Satou</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                                <td>33</td>
+                                <td>2008/11/28</td>
+                                <td>$162,700</td>
+                            </tr>
+                            <tr>
+                                <td>Brielle Williamson</td>
+                                <td>Integration Specialist</td>
+                                <td>New York</td>
+                                <td>61</td>
+                                <td>2012/12/02</td>
+                                <td>$372,000</td>
+                            </tr>
+                            <tr>
+                                <td>Herrod Chandler</td>
+                                <td>Sales Assistant</td>
+                                <td>San Francisco</td>
+                                <td>59</td>
+                                <td>2012/08/06</td>
+                                <td>$137,500</td>
+                            </tr>
+                            <tr>
+                                <td>Rhona Davidson</td>
+                                <td>Integration Specialist</td>
+                                <td>Tokyo</td>
+                                <td>55</td>
+                                <td>2010/10/14</td>
+                                <td>$327,900</td>
+                            </tr>
+                            <tr>
+                                <td>Colleen Hurst</td>
+                                <td>Javascript Developer</td>
+                                <td>San Francisco</td>
+                                <td>39</td>
+                                <td>2009/09/15</td>
+                                <td>$205,500</td>
+                            </tr>
+                            <tr>
+                                <td>Sonya Frost</td>
+                                <td>Software Engineer</td>
+                                <td>Edinburgh</td>
+                                <td>23</td>
+                                <td>2008/12/13</td>
+                                <td>$103,600</td>
+                            </tr>
+                            <tr>
+                                <td>Jena Gaines</td>
+                                <td>Office Manager</td>
+                                <td>London</td>
+                                <td>30</td>
+                                <td>2008/12/19</td>
+                                <td>$90,560</td>
+                            </tr>
+                            <tr>
+                                <td>Quinn Flynn</td>
+                                <td>Support Lead</td>
+                                <td>Edinburgh</td>
+                                <td>22</td>
+                                <td>2013/03/03</td>
+                                <td>$342,000</td>
+                            </tr>
+                            <tr>
+                                <td>Charde Marshall</td>
+                                <td>Regional Director</td>
+                                <td>San Francisco</td>
+                                <td>36</td>
+                                <td>2008/10/16</td>
+                                <td>$470,600</td>
+                            </tr>
+                            <tr>
+                                <td>Haley Kennedy</td>
+                                <td>Senior Marketing Designer</td>
+                                <td>London</td>
+                                <td>43</td>
+                                <td>2012/12/18</td>
+                                <td>$313,500</td>
+                            </tr>
+                            <tr>
+                                <td>Tatyana Fitzpatrick</td>
+                                <td>Regional Director</td>
+                                <td>London</td>
+                                <td>19</td>
+                                <td>2010/03/17</td>
+                                <td>$385,750</td>
+                            </tr>
+                            <tr>
+                                <td>Michael Silva</td>
+                                <td>Marketing Designer</td>
+                                <td>London</td>
+                                <td>66</td>
+                                <td>2012/11/27</td>
+                                <td>$198,500</td>
+                            </tr>
+                            <tr>
+                                <td>Paul Byrd</td>
+                                <td>Chief Financial Officer (CFO)</td>
+                                <td>New York</td>
+                                <td>64</td>
+                                <td>2010/06/09</td>
+                                <td>$725,000</td>
+                            </tr>
+                            <tr>
+                                <td>Gloria Little</td>
+                                <td>Systems Administrator</td>
+                                <td>New York</td>
+                                <td>59</td>
+                                <td>2009/04/10</td>
+                                <td>$237,500</td>
+                            </tr>
+                            <tr>
+                                <td>Bradley Greer</td>
+                                <td>Software Engineer</td>
+                                <td>London</td>
+                                <td>41</td>
+                                <td>2012/10/13</td>
+                                <td>$132,000</td>
+                            </tr>
+                            <tr>
+                                <td>Dai Rios</td>
+                                <td>Personnel Lead</td>
+                                <td>Edinburgh</td>
+                                <td>35</td>
+                                <td>2012/09/26</td>
+                                <td>$217,500</td>
+                            </tr>
+                            <tr>
+                                <td>Jenette Caldwell</td>
+                                <td>Development Lead</td>
+                                <td>New York</td>
+                                <td>30</td>
+                                <td>2011/09/03</td>
+                                <td>$345,000</td>
+                            </tr>
+                            <tr>
+                                <td>Yuri Berry</td>
+                                <td>Chief Marketing Officer (CMO)</td>
+                                <td>New York</td>
+                                <td>40</td>
+                                <td>2009/06/25</td>
+                                <td>$675,000</td>
+                            </tr>
+                            <tr>
+                                <td>Caesar Vance</td>
+                                <td>Pre-Sales Support</td>
+                                <td>New York</td>
+                                <td>21</td>
+                                <td>2011/12/12</td>
+                                <td>$106,450</td>
+                            </tr>
+                            <tr>
+                                <td>Doris Wilder</td>
+                                <td>Sales Assistant</td>
+                                <td>Sydney</td>
+                                <td>23</td>
+                                <td>2010/09/20</td>
+                                <td>$85,600</td>
+                            </tr>
+                            <tr>
+                                <td>Angelica Ramos</td>
+                                <td>Chief Executive Officer (CEO)</td>
+                                <td>London</td>
+                                <td>47</td>
+                                <td>2009/10/09</td>
+                                <td>$1,200,000</td>
+                            </tr>
+                            <tr>
+                                <td>Gavin Joyce</td>
+                                <td>Developer</td>
+                                <td>Edinburgh</td>
+                                <td>42</td>
+                                <td>2010/12/22</td>
+                                <td>$92,575</td>
+                            </tr>
+                            <tr>
+                                <td>Jennifer Chang</td>
+                                <td>Regional Director</td>
+                                <td>Singapore</td>
+                                <td>28</td>
+                                <td>2010/11/14</td>
+                                <td>$357,650</td>
+                            </tr>
+                            <tr>
+                                <td>Brenden Wagner</td>
+                                <td>Software Engineer</td>
+                                <td>San Francisco</td>
+                                <td>28</td>
+                                <td>2011/06/07</td>
+                                <td>$206,850</td>
+                            </tr>
+                            <tr>
+                                <td>Fiona Green</td>
+                                <td>Chief Operating Officer (COO)</td>
+                                <td>San Francisco</td>
+                                <td>48</td>
+                                <td>2010/03/11</td>
+                                <td>$850,000</td>
+                            </tr>
+                            <tr>
+                                <td>Shou Itou</td>
+                                <td>Regional Marketing</td>
+                                <td>Tokyo</td>
+                                <td>20</td>
+                                <td>2011/08/14</td>
+                                <td>$163,000</td>
+                            </tr>
+                            <tr>
+                                <td>Michelle House</td>
+                                <td>Integration Specialist</td>
+                                <td>Sydney</td>
+                                <td>37</td>
+                                <td>2011/06/02</td>
+                                <td>$95,400</td>
+                            </tr>
+                            <tr>
+                                <td>Suki Burks</td>
+                                <td>Developer</td>
+                                <td>London</td>
+                                <td>53</td>
+                                <td>2009/10/22</td>
+                                <td>$114,500</td>
+                            </tr>
+                            <tr>
+                                <td>Prescott Bartlett</td>
+                                <td>Technical Author</td>
+                                <td>London</td>
+                                <td>27</td>
+                                <td>2011/05/07</td>
+                                <td>$145,000</td>
+                            </tr>
+                            <tr>
+                                <td>Gavin Cortez</td>
+                                <td>Team Leader</td>
+                                <td>San Francisco</td>
+                                <td>22</td>
+                                <td>2008/10/26</td>
+                                <td>$235,500</td>
+                            </tr>
+                            <tr>
+                                <td>Martena Mccray</td>
+                                <td>Post-Sales support</td>
+                                <td>Edinburgh</td>
+                                <td>46</td>
+                                <td>2011/03/09</td>
+                                <td>$324,050</td>
+                            </tr>
+                            <tr>
+                                <td>Unity Butler</td>
+                                <td>Marketing Designer</td>
+                                <td>San Francisco</td>
+                                <td>47</td>
+                                <td>2009/12/09</td>
+                                <td>$85,675</td>
+                            </tr>
+                            <tr>
+                                <td>Howard Hatfield</td>
+                                <td>Office Manager</td>
+                                <td>San Francisco</td>
+                                <td>51</td>
+                                <td>2008/12/16</td>
+                                <td>$164,500</td>
+                            </tr>
+                            <tr>
+                                <td>Hope Fuentes</td>
+                                <td>Secretary</td>
+                                <td>San Francisco</td>
+                                <td>41</td>
+                                <td>2010/02/12</td>
+                                <td>$109,850</td>
+                            </tr>
+                            <tr>
+                                <td>Vivian Harrell</td>
+                                <td>Financial Controller</td>
+                                <td>San Francisco</td>
+                                <td>62</td>
+                                <td>2009/02/14</td>
+                                <td>$452,500</td>
+                            </tr>
+                            <tr>
+                                <td>Timothy Mooney</td>
+                                <td>Office Manager</td>
+                                <td>London</td>
+                                <td>37</td>
+                                <td>2008/12/11</td>
+                                <td>$136,200</td>
+                            </tr>
+                            <tr>
+                                <td>Jackson Bradshaw</td>
+                                <td>Director</td>
+                                <td>New York</td>
+                                <td>65</td>
+                                <td>2008/09/26</td>
+                                <td>$645,750</td>
+                            </tr>
+                            <tr>
+                                <td>Olivia Liang</td>
+                                <td>Support Engineer</td>
+                                <td>Singapore</td>
+                                <td>64</td>
+                                <td>2011/02/03</td>
+                                <td>$234,500</td>
+                            </tr>
+                            <tr>
+                                <td>Bruno Nash</td>
+                                <td>Software Engineer</td>
+                                <td>London</td>
+                                <td>38</td>
+                                <td>2011/05/03</td>
+                                <td>$163,500</td>
+                            </tr>
+                            <tr>
+                                <td>Sakura Yamamoto</td>
+                                <td>Support Engineer</td>
+                                <td>Tokyo</td>
+                                <td>37</td>
+                                <td>2009/08/19</td>
+                                <td>$139,575</td>
+                            </tr>
+                            <tr>
+                                <td>Thor Walton</td>
+                                <td>Developer</td>
+                                <td>New York</td>
+                                <td>61</td>
+                                <td>2013/08/11</td>
+                                <td>$98,540</td>
+                            </tr>
+                            <tr>
+                                <td>Finn Camacho</td>
+                                <td>Support Engineer</td>
+                                <td>San Francisco</td>
+                                <td>47</td>
+                                <td>2009/07/07</td>
+                                <td>$87,500</td>
+                            </tr>
+                            <tr>
+                                <td>Serge Baldwin</td>
+                                <td>Data Coordinator</td>
+                                <td>Singapore</td>
+                                <td>64</td>
+                                <td>2012/04/09</td>
+                                <td>$138,575</td>
+                            </tr>
+                            <tr>
+                                <td>Zenaida Frank</td>
+                                <td>Software Engineer</td>
+                                <td>New York</td>
+                                <td>63</td>
+                                <td>2010/01/04</td>
+                                <td>$125,250</td>
+                            </tr>
+                            <tr>
+                                <td>Zorita Serrano</td>
+                                <td>Software Engineer</td>
+                                <td>San Francisco</td>
+                                <td>56</td>
+                                <td>2012/06/01</td>
+                                <td>$115,000</td>
+                            </tr>
+                            <tr>
+                                <td>Jennifer Acosta</td>
+                                <td>Junior Javascript Developer</td>
+                                <td>Edinburgh</td>
+                                <td>43</td>
+                                <td>2013/02/01</td>
+                                <td>$75,650</td>
+                            </tr>
+                            <tr>
+                                <td>Cara Stevens</td>
+                                <td>Sales Assistant</td>
+                                <td>New York</td>
+                                <td>46</td>
+                                <td>2011/12/06</td>
+                                <td>$145,600</td>
+                            </tr>
+                            <tr>
+                                <td>Hermione Butler</td>
+                                <td>Regional Director</td>
+                                <td>London</td>
+                                <td>47</td>
+                                <td>2011/03/21</td>
+                                <td>$356,250</td>
+                            </tr>
+                            <tr>
+                                <td>Lael Greer</td>
+                                <td>Systems Administrator</td>
+                                <td>London</td>
+                                <td>21</td>
+                                <td>2009/02/27</td>
+                                <td>$103,500</td>
+                            </tr>
+                            <tr>
+                                <td>Jonas Alexander</td>
+                                <td>Developer</td>
+                                <td>San Francisco</td>
+                                <td>30</td>
+                                <td>2010/07/14</td>
+                                <td>$86,500</td>
+                            </tr>
+                            <tr>
+                                <td>Shad Decker</td>
+                                <td>Regional Director</td>
+                                <td>Edinburgh</td>
+                                <td>51</td>
+                                <td>2008/11/13</td>
+                                <td>$183,000</td>
+                            </tr>
+                            <tr>
+                                <td>Michael Bruce</td>
+                                <td>Javascript Developer</td>
+                                <td>Singapore</td>
+                                <td>29</td>
+                                <td>2011/06/27</td>
+                                <td>$183,000</td>
+                            </tr>
+                            <tr>
+                                <td>Donna Snider</td>
+                                <td>Customer Support</td>
+                                <td>New York</td>
+                                <td>27</td>
+                                <td>2011/01/25</td>
+                                <td>$112,000</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="display: table; width: 100%; background-color: #e08643; height: 30px; overflow: hidden;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span style="font-size: 14px; color: #ffffff;">&nbsp;DOE TRAININGS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span style="color: #ed1c24;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Trainings</span>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Induction Training</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Management Training</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;Camp Management Trainings</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;My and Resilience (TRR)</span></div>
+                        </li>
+                        <li class="list-group-item">
+                            <span style="color: #ed1c24;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Other Trainings</span>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #ff7f27;"><span style="color: #e7b975;">&nbsp;IML Staff</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="display: table; width: 100%; background-color: #3c54a5; height: 30px; overflow: hidden;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                                <span style="font-size: 14px; color: #ffffff;">&nbsp;Useful links</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span style="color: #045d8b;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Resources</span>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAS</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;IAT</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Int</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;The</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;Hu</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;MI</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;OC</span></div>
+                        </li>
+                        <li class="list-group-item">
+                            <span style="color: #045d8b;">&nbsp;&nbsp;<i class="fas fa-play" style="font-size: 10px; color: #045d8b;"></i>&nbsp;Resources</span>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;ACI</span></div>
+                        </li>
+                        <li class="list-group-item" style="background-color: #f1f3f8;">
+                            <div style="border-left: solid 2px #545861;"><span style="color: #be3615;">&nbsp;GD</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="text-align: right; color: #ffffff; background-color: #1972c6; height:30px;">
+            Department@2019
+        </div>
+    </div>
+</div>
+</body>
+</html>
