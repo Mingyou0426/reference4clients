@@ -273,6 +273,22 @@
         [data-toggle="collapse"].collapsed .fa:before {
             content: "\f13a";
         }
+
+        .highcharts-title {
+            font-size: 7px !important;
+        }
+
+        .highcharts-subtitle {
+            font-size: 7px !important;
+        }
+
+        .highcharts-caption {
+            font-size: 7px !important;
+        }
+
+        g > text {
+            font-size: 7px !important;
+        }
     </style>
     <script>
         $(function(){
@@ -446,7 +462,6 @@
                 chart: {
                     type: 'line'
                 },
-                legend: false,
                 title: {
                     text: 'Appeals Over the last Year',
                     style: {
@@ -474,7 +489,6 @@
                 chart: {
                     type: 'line'
                 },
-                legend: false,
                 title: {
                     text: 'Appeals by Year',
                     style: {
@@ -715,6 +729,7 @@
                             <br>Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
                             To use Font Awesome icons, add the following to your HTML page (No downloading or installation is required):
                             Bootstrap 4 does not have its own icon library (Glyphicons from Bootstrap 3 are not supported in BS4). However, there are many free icon libraries to choose from, such as Font Awesome and Google Material Design Icons.
+                            To use Font Awesome icons, add the following to your HTML page:
                         </span>
                         <span style="display:block; text-align: right;">
                             <br>
@@ -728,14 +743,20 @@
             </div>
             <div class="row" style="margin-top: 10px;">
                 <div class="col-md-4">
-                    <div class="row" style="color: #ffffff; background-color: #ff2100; text-align: center; height: 20px;">
+                    <div class="row" style="color: #ffffff; background-color: #ff2100; text-align: center; height: 30px;">
                         <!-- <div class="col-md-12">
                             <img src="images/highlights.png" class="img-responsive" style="width:100%; display: block;"/>
                         </div> -->
-                        <span style="font-size: 12px; width: 100%;">Highlighted Operations</span>
+                        <div style="display: table; width: 100%; background-color: #f15a46; height: 30px; overflow: hidden;">
+                            <div style="display: table-cell; vertical-align: middle;">
+                                <div>
+                                    <span style="font-size: 14px; color: #ffffff;">&nbsp;Highlighted Operations</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" style="font-size: 11px;">Select Year</span>
@@ -751,7 +772,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" style="font-size: 11px;">Select Month</span>
@@ -866,7 +887,7 @@
     </div>
 
     <div class="row" style="margin-top: 15px;">
-        <div class="col-md-7">
+        <div class="col-md-7" style="padding-left: 0px; padding-right: 0px;">
             <div id="vmap" style="height: 450px; border: solid #7f7f7f; border-width: 1px;"></div>
         </div>
         <div class="col-md-2" style="text-align: justify; text-justify: inter-word; height: 450px; overflow-x:hidden; overflow-y:auto;">
@@ -882,12 +903,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="chart1" style="height: 150px;"></div>
+                    <div id="chart1" style="height: 120px;"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="chart2" style="height: 150px;"></div>
+                    <div id="chart2" style="height: 120px;"></div>
                 </div>
             </div>
         </div>
@@ -981,6 +1002,31 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div style="display: table; width: 100%; height: 100%; overflow: hidden;">
+                                        <div style="display: table-cell; vertical-align: middle;">
+                                            <div>
+                                                <span><i class="fas fa-volcano fa-2x" style="color: #f15a46;"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <span style="font-size: 12px; color: #39a8d8;">Papua New Guinea: Mt. Manam Volcano - Jun 2019</span>
+                                    <br/>
+                                    <span style="font-size: 10px; color: #adbdd4;">Affected countries: Papua New Guinea</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span style="font-size: 12px;">
+                                        Based on the report from Rabaul Volcanological Observatory, on Guinean time, a volcanic activity was reported on a basaltic in Madang province, on the northeaset coast
+                                    </span>
+                                </div>
+                            </div>
+                        </li>x
                         <li class="list-group-item">
                             <nav aria-label="Pagenation4Emergency">
                                 <ul class="pagination" style="font-size: 13px;">
