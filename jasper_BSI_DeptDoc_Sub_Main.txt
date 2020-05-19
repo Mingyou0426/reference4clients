@@ -1,0 +1,81 @@
+select (SELECT dept_name FROM HRE_ORGBAS where DEPT_NO = $P{arg_dept_no}) as 科別名稱,ca_srvsta1.doc_code
+     , (select doc_name from "Doc_Dim" where doc_code = ca_srvsta1.doc_code) as doc_name
+     , ca_codedtl.code_no
+     , ca_codedtl.code_desc
+     , ca_srvsta1.item_no
+     , (select item_desc from ca_srvitembas where item_no = ca_srvsta1.item_no) as item_desc
+     , round(sum(ca_srvsta1.sta_amt) /  max(tmpt.month_cnt)) as sta_amt
+     , round(max(tmpt.last_year_amt_basic) /  max(tmpt.month_cnt)) as last_year_amt_basic
+     , round(max(tmpt.ZE0001) /  max(tmpt.month_cnt)) as 本期住院住院床日
+     , round(max(tmpt.ZF0001) /  max(tmpt.month_cnt)) as 本期加護住院床日
+     , round(max(tmpt.ZA0005) /  max(tmpt.month_cnt)) as sta_amt_basic
+     , round(max(tmpt.ZA0005) /  max(tmpt.month_cnt)) as 本期醫務收入合計
+     , round(max(tmpt.ZB0001) /  max(tmpt.month_cnt)) as 本期主治醫師
+     , round(max(tmpt.ZB0001) /  max(tmpt.month_cnt)) as 本期專任醫師人數
+     , round(max(tmpt.ZD0001) /  max(tmpt.month_cnt)) as 本期門診人次
+     , round(max(tmpt.ZD0002) /  max(tmpt.month_cnt)) as 本期門診數
+     , round(max(tmpt.ZA0001) /  max(tmpt.month_cnt)) as 本期門診收入
+     , round(max(tmpt.ZA0002) /  max(tmpt.month_cnt)) as 本期住院收入
+     , round(max(tmpt.ZA0003) /  max(tmpt.month_cnt)) as 本期加護收入
+     , round(max(tmpt.ZA0004) /  max(tmpt.month_cnt)) as 本期開刀房收入
+     , round(max(tmpt.ZH0001) /  max(tmpt.month_cnt)) as 本期開刀房開刀數
+     , round(max(tmpt.ZH0002) /  max(tmpt.month_cnt)) as 本期開刀房時間
+     , round(max(tmpt.ZEF0001) /  max(tmpt.month_cnt)) as 本期住加住院床日
+     , round(max(tmpt.ZEF0002) /  max(tmpt.month_cnt)) as 本期住加住院人數
+  from ca_srvsta1
+     , ca_codedtl
+     , (select doc_code
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+             , sum(case when item_no='ZA0005' then last_year_amt end) as last_year_amt_basic
+             , sum(case when item_no='ZE0001' then sta_amt end) as ZE0001 --本期住院住院床日
+             , sum(case when item_no='ZF0001' then sta_amt end) as ZF0001 --本期加護住院床日
+             , sum(case when item_no='ZA0005' then sta_amt end) as ZA0005 --sta_amt_basic、本期醫務收入合計
+             , sum(case when item_no='ZB0001' then sta_amt end) as ZB0001 --本期主治醫師、本期專任醫師人數
+             , sum(case when item_no='ZD0001' then sta_amt end) as ZD0001 --本期門診人次
+             , sum(case when item_no='ZD0002' then sta_amt end) as ZD0002 --本期門診數
+             , sum(case when item_no='ZA0001' then sta_amt end) as ZA0001 --本期門診收入
+             , sum(case when item_no='ZA0002' then sta_amt end) as ZA0002 --本期住院收入
+             , sum(case when item_no='ZA0003' then sta_amt end) as ZA0003 --本期加護收入
+             , sum(case when item_no='ZA0004' then sta_amt end) as ZA0004 --本期開刀房收入
+             , sum(case when item_no='ZH0001' then sta_amt end) as ZH0001 --本期開刀房開刀數
+             , sum(case when item_no='ZH0002' then sta_amt end) as ZH0002 --本期開刀房時間
+             , sum(case when item_no='ZE0001' then sta_amt when item_no='ZF0001' then sta_amt end) as ZEF0001 --本期住加住院床日
+             , sum(case when item_no='ZE0002' then sta_amt when item_no='ZF0002' then sta_amt end) as ZEF0002 --本期住加住院人數
+          from ca_srvsta1
+         where sta_month between $P{ARG_MONTH1} and $P{ARG_MONTH2} 
+           and item_no like 'Z%'
+           -- 僅計主治醫師
+           and doc_code not in (select doc_code from "Doc_Dim")
+           -- 排除離職人員
+           and (select count(1) from hre_empbas where doc_code in 
+		(select doc_code from "Doc_Dim"                                   
+		where doc_code = ca_srvsta1.doc_code)) > 0
+           AND ((($P{arg_dept_no} = 'ORGAN' OR $P{arg_rpt} = 'S' )  AND ca_srvsta1.dept_no = $P{arg_dept_no})
+            OR  ($P{arg_rpt} = 'B' AND ca_srvsta1.dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept_no}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+         group by doc_code
+       ) tmpt
+ where ca_srvsta1.sta_month between $P{ARG_MONTH1} and $P{ARG_MONTH2} 
+   and ca_srvsta1.item_no like 'Z%'
+   -- 僅計主治醫師
+   and ca_srvsta1.doc_code not in (select doc_code from "Doc_Dim")
+    -- 排除離職人員
+    and (select count(1) from hre_empbas where doc_code in 
+		(select doc_code from "Doc_Dim"                                   
+		where doc_code = ca_srvsta1.doc_code)) > 0
+   AND ((($P{arg_dept_no} = 'ORGAN' OR $P{arg_rpt} = 'S' )  AND ca_srvsta1.dept_no = $P{arg_dept_no})
+    OR  ($P{arg_rpt} = 'B' AND ca_srvsta1.dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept_no}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+    and ca_srvsta1.doc_code = tmpt.doc_code
+    and ca_codedtl.code_type = 'SR01'
+    AND ca_codedtl.code_no = SUBSTR(ca_srvsta1.item_no, 2, 1)
+ group by ca_srvsta1.doc_code, ca_srvsta1.item_no    
+        , ca_codedtl.code_no, ca_codedtl.code_desc
+                       
+
+/*BSI_DeptDoc_Sub_Main*/
