@@ -1,0 +1,286 @@
+select (select ch_name from ca_caorgbas
+         where dept_no = tmp.dept_no) as dept_name
+     , tmp.sure_code
+     , case when tmp.sure_code='01' then '全科'
+						when tmp.sure_code='02' then '門診'
+						when tmp.sure_code='03' then '住院'
+            when tmp.sure_code='04' then '門診人次'
+						when tmp.sure_code='05' then '住院床日' end sure
+     , tmp.new_fee_kind as kind
+     , case when tmp.new_fee_kind='aa' then '總計'
+            else (SELECT distinct new_kind_desc FROM dim_feecate
+                WHERE new_fee_kind = tmp.new_fee_kind) end kind_desc
+     , tmp.doc_no
+     , case when tmp.doc_no='0000' then '本期'
+            else (select doc_name from ca_hisdocbas where doc_code = tmp.doc_no) end doc_name
+            
+     -- 原程式 HRPUSER.EHRPHIS02_PKG.f_get_rep431_amt
+     , ROUND(max(tmp.sta_amt) / max(tmp.month_cnt)) as df_amt
+     -- 原程式 HRPUSER.EHRPHIS02_PKG.f_get_rep431_per
+     , (case when tmp.sure_code = '01' then round(cast(max(tmp.sta_amt) / max(tmpt.sta_amt) * 100 as numeric), 2)
+             when tmp.sure_code in ('02', '04') then round(cast(max(tmp.sta_amt) / max(tmpt.o_amt) * 100 as numeric), 2)
+             when tmp.sure_code in ('03', '05') then round(cast(max(tmp.sta_amt) / max(tmpt.i_amt) * 100 as numeric), 2)
+       end) df_ps
+
+  from (select $P{arg_dept} as dept_no
+             , '01' as sure_code
+             , new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+         group by new_fee_kind, doc_no
+        union all 
+        Select $P{arg_dept} as dept_no
+             , '01' as sure_code
+             , 'aa' as new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+         GROUP BY doc_no    
+        union all
+        Select $P{arg_dept} as dept_no
+             ,  '01' as sure_code
+             , new_fee_kind 
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+         group by new_fee_kind
+        union all  -- 2015.07.29 ADD
+        Select $P{arg_dept} as dept_no
+             ,  '01' as sure_code
+             , 'aa' as new_fee_kind
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+        --------------------------- 門診/住院 
+        union all
+        select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '02'
+										when ioeur_type='I' then '03' end sure_code 
+             , new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type, new_fee_kind, doc_no
+        union all 
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '02'
+										when ioeur_type='I' then '03' end sure_code 
+             , 'aa' as new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         GROUP BY ioeur_type, doc_no    
+        union all
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '02'
+										when ioeur_type='I' then '03' end sure_code 
+             , new_fee_kind
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type, new_fee_kind
+        union all  -- 2015.07.29 Add
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '02'
+										when ioeur_type='I' then '03' end sure_code 
+             , 'aa' as new_fee_kind
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type
+         --------------------------- 門診人次/住院床日 
+        union all
+        select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '04'
+										when ioeur_type='I' then '05' end sure_code 
+             , new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type, new_fee_kind, doc_no
+        union all 
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '04'
+										when ioeur_type='I' then '05' end sure_code 
+             , 'aa' as new_fee_kind
+             , doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+           AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+            OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         GROUP BY ioeur_type, doc_no    
+        union all
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '04'
+										when ioeur_type='I' then '05' end sure_code 
+             , new_fee_kind
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+          AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+           OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type, new_fee_kind
+        union all  -- 2015.07.29 Add
+        Select $P{arg_dept} as dept_no
+             , case when ioeur_type='O' then '04'
+										when ioeur_type='I' then '05' end sure_code 
+             , 'aa' as new_fee_kind
+             , '0000' as doc_no
+             , sum(sta_amt) as sta_amt
+             , (select 
+    extract(year from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM'))) * 12
+    + 
+    extract(month from age(to_date($P{ARG_MONTH2}, 'YYYY-MM'), to_date($P{ARG_MONTH1}, 'YYYY-MM')))+1) as month_cnt
+          FROM ca_icfeekindsta
+         WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+          AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+           OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+           AND sta_type = 'ORD'
+           and ioeur_type in ('O', 'I')
+         group by ioeur_type
+       ) tmp         
+      , (select doc_no
+              , sum(sta_amt) as sta_amt
+              , sum(case when ioeur_type='O' then sta_amt end) as o_amt
+              , sum(case when ioeur_type='I' then sta_amt end) as i_amt
+           from ca_icfeekindsta
+          WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+            AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+             OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+            AND sta_type = 'ORD'
+          group by doc_no
+          union    
+          select '0000' as doc_no
+               , sum(sta_amt) as sta_amt
+               , sum(case when ioeur_type='O' then sta_amt end) as o_amt
+               , sum(case when ioeur_type='I' then sta_amt end) as i_amt
+            from ca_icfeekindsta
+           WHERE sta_month BETWEEN $P{ARG_MONTH1} AND $P{ARG_MONTH2}
+             AND (($P{arg_rpt} = 'S' AND dept_no = $P{arg_dept})
+              OR  ($P{arg_rpt} = 'B' AND dept_no in (with recursive dept_list as
+( select ca1.dept_no from ca_caorgbas ca1 where dept_no=$P{arg_dept}
+union all select ca2.dept_no from ca_caorgbas ca2 join dept_list on dept_list.dept_no=ca2.sup_dept ) select dept_no from dept_list)))
+             AND sta_type = 'ORD' 
+       ) tmpt 
+       
+  where tmp.doc_no = tmpt.doc_no
+  group by tmp.dept_no, tmp.sure_code, tmp.new_fee_kind, tmp.doc_no
+/*MAG_Report_4_3_1*/
